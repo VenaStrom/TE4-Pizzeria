@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <script src="scripts/menu.js" defer></script>
     <script src="bootstrap/bootstrap.js"></script>
     <div id="content" class="overflow-x-hidden">
         <div class="bg d-flex justify-content-center align-items-center"
@@ -26,90 +27,14 @@
                 <p class="booking-info">Ring oss på <a class="opacity-75-hover" href="tel:0630-555-555"><strong>0630-555-555</strong></a> för att boka bord</p>
             </div>
         </div>
-
-
         <div id="menu" class="d-flex flex-column align-items-center">
             <div id="menu-title" class="display-1 italianno mb-4 mt-5">Meny</div>
             <div id="menu-items-container" class="lh-sm position-relative">
-                <div 
+            <div 
                 class="container-fluid position-absolute top-2 bottom-7 
                 border-start border-end border-white opacity-50"></div>
-                <div class="d-flex mb-4 flex-column px-4">
-                    <div class="d-flex justify-content-between">
-                        <div class="fs-1 italianno">Margherita</div>
-                        <div class="fs-5 fst-italic align-self-center">80 kr</div>
-                    </div>
-                    <div>
-                        <div class="fs-5 fst-italic">Ost, tomatsås</div>
-                    </div>
-                </div>
-                <div class="d-flex mb-4 flex-column px-4">
-                    <div class="d-flex justify-content-between">
-                        <div class="fs-1 italianno">Hawaii</div>
-                        <div class="fs-5 fst-italic align-self-center">90 kr</div>
-                    </div>
-                    <div>
-                        <div class="fs-5 fst-italic">Ost, tomatsås, skinka, ananas</div>
-                    </div>
-                </div>
-
-                <div class="d-flex mb-4 flex-column px-4">
-                    <div class="d-flex justify-content-between">
-                        <div class="fs-1 italianno">Calzone</div>
-                        <div class="fs-5 fst-italic align-self-center">85 kr</div>
-                    </div>
-                    <div>
-                        <div class="fs-5 fst-italic">Inbakad, ost, tomatsås, skinka</div>
-                    </div>
-                </div>
-
-                <div class="d-flex mb-4 flex-column px-4">
-                    <div class="d-flex justify-content-between">
-                        <div class="fs-1 italianno">Capricciosa</div>
-                        <div class="fs-5 fst-italic align-self-center">90 kr</div>
-                    </div>
-                    <div>
-                        <div class="fs-5 fst-italic">Ost, tomatsås, skinka, champinjoner</div>
-                    </div>
-                </div>
-
-                <div class="d-flex mb-4 flex-column px-4">
-                    <div class="d-flex justify-content-between">
-                        <div class="fs-1 italianno">Vesuvio</div>
-                        <div class="fs-5 fst-italic align-self-center">85 kr</div>
-                    </div>
-                    <div>
-                        <div class="fs-5 fst-italic">Ost, tomatsås, skinka</div>
-                    </div>
-                </div>
-
-                <div class="d-flex mb-4 flex-column px-4">
-                    <div class="d-flex justify-content-between">
-                        <div class="fs-1 italianno">La Casa</div>
-                        <div class="fs-5 fst-italic align-self-center">95 kr</div>
-                    </div>
-                    <div>
-                        <div class="fs-5 fst-italic">Ost, tomatsås, champinjoner, räkor, skinka</div>
-                    </div>
-                </div>
-
-                <div class="d-flex mb-4 flex-column px-4">
-                    <div class="d-flex justify-content-between">
-                        <div class="fs-1 italianno">Pompeii</div>
-                        <div class="fs-5 fst-italic align-self-center">90 kr</div>
-                    </div>
-                    <div>
-                        <div class="fs-5 fst-italic">Ost, tomatsås, bacon, rödlök, ägg, curry</div>
-                    </div>
-                </div>
-
-                <div class="d-flex mb-4 flex-column px-4">
-                    <div class="d-flex justify-content-between">
-                        <div class="fs-1 italianno">Extra topping</div>
-                        <div class="fs-5 fst-italic align-self-center">5 kr</div>
-                    </div>
-                </div>
             </div>
+            <!--This is where all the pizzas are added via js-->
         </div>
     </div>
         <div id="pizza-carousel" class="carousel slide" data-bs-ride="carousel">
