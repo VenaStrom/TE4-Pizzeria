@@ -30,6 +30,8 @@ a {
     transition: opacity 0.4s;
 }
 
+
+
 footer {
     font-size: 80%;
 }
@@ -55,13 +57,11 @@ footer {
     .bg {
         background-position: left -17vh bottom 0;
     }
-}
+    .welcome-text{
+        font-size: 1rem !important;
+    }
+    .booking-info{
+        font-size: 0.7rem !important;
+    }
 
-@media (max-width: 1920px) {
-    html {
-        font-size: 20px;
-    }
-    .carousel-img {
-        width: 70vmin;
-    }
 }
