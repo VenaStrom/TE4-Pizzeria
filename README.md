@@ -43,7 +43,7 @@ To get started with our testing system, follow these instructions:
 All used fonts are defined in "/styles/fonts.css". Fontfiles should be placed in "/styles/"
 
 ## How to access hosting system
-Ip adress, port and password can be found in this document [Click me!]()
+Ip adress, port and password can be found in this document [Click me!](https://docs.google.com/document/d/1MWLQmjovcKNbXPJKwjeO6dcWuTHolFhyG45ixu8kwDk/edit?usp=sharing)
 * `ssh root@<ip adress> -p <port>`
 * `yes` when prompted about connecting
 * `<root password>`
