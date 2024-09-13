@@ -1,6 +1,5 @@
 :root {
     --main-color: #400; /*#460000*/ /*#8a110b*/ /*#332310*/
-
     --main-text-color: #fff;
     --bs-font-sans-serif: 'Montserrat';
     --bs-body-font-family: var(--bs-font-sans-serif);
@@ -16,9 +15,6 @@
     --bs-box-shadow: 0 0 2rem rgba(0, 0, 0, 1);
 }
 
-html {
-    font-size: 25px;
-}
 
 .italianno {
     font-family: 'Italianno';
