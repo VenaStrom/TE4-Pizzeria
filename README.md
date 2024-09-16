@@ -1,4 +1,3 @@
-Nyhet! Kortkommandon … Kortkommandon i Drive har uppdaterats så att du kan navigera med de första bokstäverna
 ## About
 A website for a pizza restaurant named "Il Forno Magico".
 
