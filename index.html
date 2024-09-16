@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex, nofollow">
@@ -19,15 +20,13 @@
 
 <body>
     <div id="content" class="overflow-x-hidden">
-        <div class="bg d-flex justify-content-center align-items-center"
-            style="background-image: url('images/1_background_img.jpg');
+        <div class="bg d-flex justify-content-center align-items-center" style="background-image: url('images/1_background_img.jpg');
             background-repeat: no-repeat; 
             background-size: cover;
             height: 100vh;
             ">
 
-            <div id="welcome-center" 
-                class="container-fluid bg-body shadow py-5 d-flex flex-column text-center">
+            <div id="welcome-center" class="container-fluid bg-body shadow py-5 d-flex flex-column text-center">
                 <div class="welcome-text fs-3">Välkommen till</div>
                 <div class="display-1 italianno">Il Forno Magico!</div>
                 <p class="booking-info">Ring oss på <a class="opacity-75-hover" href="tel:0630-555-555"><strong>0630-555-555</strong></a> för att boka bord</p>
@@ -36,44 +35,43 @@
         <div id="menu" class="d-flex flex-column align-items-center">
             <div id="menu-title" class="display-1 italianno mb-4 mt-5">Meny</div>
             <div id="menu-items-container" class="lh-sm position-relative">
-            <div 
-                class="container-fluid position-absolute top-2 bottom-7 
+                <div class="container-fluid position-absolute top-2 bottom-7 
                 border-start border-end border-white opacity-50"></div>
             </div>
             <!--This is where all the pizzas are added via js-->
         </div>
     </div>
-        <div id="pizza-carousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner d-flex align-items-center mt-4 mb-5">
-                <div class="carousel-item active" data-bs-interval="2000">
-                    <img src="images/slideshow-images/img2.jpg" class="carousel-img d-block mx-auto" alt="Pizza på tallrik">
-                </div>
-                <div class="carousel-item" data-bs-interval="4000">
-                    <img src="images/slideshow-images/img18.jpg" class="carousel-img d-block mx-auto" alt="Pizza på bräda">
-                </div>
-                <div class="carousel-item" data-bs-interval="4000">
-                    <img src="images/slideshow-images/img4.jpg" class="carousel-img d-block mx-auto" alt="Tillagar pizza">
-                </div>
-                <div class="carousel-item" data-bs-interval="4000">
-                    <img src="images/slideshow-images/img12.jpg" class="carousel-img d-block mx-auto" alt="Pizzadeg">
-                </div>
-                <div class="carousel-item" data-bs-interval="4000">
-                    <img src="images/slideshow-images/img5.jpg" class="carousel-img d-block mx-auto" alt="Pizza i ugn">
-                </div>
-                <div class="carousel-item" data-bs-interval="4000">
-                    <img src="images/slideshow-images/img7.jpg" class="carousel-img d-block mx-auto" alt="Pizza slice">
-                </div>
+    <div id="pizza-carousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner d-flex align-items-center mt-4 mb-5">
+            <div class="carousel-item active" data-bs-interval="2000">
+                <img src="images/slideshow-images/img2.jpg" class="carousel-img d-block mx-auto" alt="Pizza på tallrik">
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#pizza-carousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#pizza-carousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+            <div class="carousel-item" data-bs-interval="4000">
+                <img src="images/slideshow-images/img18.jpg" class="carousel-img d-block mx-auto" alt="Pizza på bräda">
+            </div>
+            <div class="carousel-item" data-bs-interval="4000">
+                <img src="images/slideshow-images/img4.jpg" class="carousel-img d-block mx-auto" alt="Tillagar pizza">
+            </div>
+            <div class="carousel-item" data-bs-interval="4000">
+                <img src="images/slideshow-images/img12.jpg" class="carousel-img d-block mx-auto" alt="Pizzadeg">
+            </div>
+            <div class="carousel-item" data-bs-interval="4000">
+                <img src="images/slideshow-images/img5.jpg" class="carousel-img d-block mx-auto" alt="Pizza i ugn">
+            </div>
+            <div class="carousel-item" data-bs-interval="4000">
+                <img src="images/slideshow-images/img7.jpg" class="carousel-img d-block mx-auto" alt="Pizza slice">
+            </div>
         </div>
-        
+        <button class="carousel-control-prev" type="button" data-bs-target="#pizza-carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#pizza-carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
     <footer class="d-flex flex-column align-items-center px-4 py-4 border-top">
         <div id="footer-info" class="d-flex flex-column flex-md-row w-100 text-center">
             <div id="address" class="col fs-5">
@@ -106,10 +104,17 @@
         </div>
         <hr class="w-75 border-1 opacity-100 my-4">
         <div id="social-media-container" class="d-flex gap-3">
-            <a id="facebook" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://facebook.com/ntiuppsala" target="_blank"><img src="images/facebook_icon.png" alt="Facebook" id="facebook-icon" class="w-75"></a>
-            <a id="instagram" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://instagram.com/ntiuppsala" target="_blank"><img src="images/instagram_icon.png" alt="Instagram" id="instagram-icon" class="w-75"></a>
-            <a id="x" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://x.com/ntiuppsala" target="_blank" ><img src="images/x_icon.png" alt="X" id="x-icon" style="scale: 0.95;" class="w-75"></a>
+            <a id="facebook" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://facebook.com/ntiuppsala" target="_blank">
+                <img src="images/facebook_icon.png" alt="Facebook" id="facebook-icon" class="w-75">
+            </a>
+            <a id="instagram" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://instagram.com/ntiuppsala" target="_blank">
+                <img src="images/instagram_icon.png" alt="Instagram" id="instagram-icon" class="w-75">
+            </a>
+            <a id="x" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://x.com/ntiuppsala" target="_blank">
+                <img src="images/x_icon.png" alt="X" id="x-icon" style="scale: 0.95;" class="w-75">
+            </a>
         </div>
     </footer>
 </body>
+
 </html>
