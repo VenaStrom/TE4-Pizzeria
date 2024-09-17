@@ -23,7 +23,7 @@ class TestMenu(TemplateTest):
 
     # new test function goes here
 
-    def testMenu(self) -> None:
+    def testBasicMenu(self) -> None:
         self.assertInAll([
             "Hawaii",
             "90 kr",
@@ -33,6 +33,10 @@ class TestMenu(TemplateTest):
             "90 kr"
         ], self.page.content())
 
+    def testTopping(self) -> None:
+        # "Extra topping" should not be in the menu, rather it should be outside of it
+        menu = self.page.locator("#menu-items-container")
+        self.assertNotIn("Extra topping", menu.all_inner_texts())
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
