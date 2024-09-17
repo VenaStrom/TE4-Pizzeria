@@ -14,7 +14,9 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="bootstrap/bootstrap.js"></script>
-    <script defer src="scripts/menu.js" defer></script>
+    <script defer src="scripts/pizzas.js"></script>
+    <script defer src="scripts/populateMenu.js"></script>
+    <script defer src="scripts/filter.js"></script>
 </head>
 
 <body>
@@ -33,8 +35,8 @@
                 <!-- Menu containern -->
                 <div id="menu" class="order-2 order-sm-1 col-12 col-sm-6 d-flex flex-column align-items-center">
                     <div id="menu-title" class="display-1 italianno mb-4 mt-5">Meny</div>
-                    <div id="menu-items-container" class="lh-sm position-relative">
-                        <div class=""></div>
+                    <div id="menu-items-container" class="lh-sm p-0 container-fluid position-relative">
+                        
                     </div>
                     <!-- This is where all the pizzas are added via js -->
                     <div class="d-flex justify-content-between container-fluid px-4">
@@ -109,16 +111,6 @@
                             </div>
                             <div>
                                 <div class="fs-5 fst-italic">Ost, Tomatsås, Bacon, Rödlök, Ägg, Curry</div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex mb-4 flex-column px-4">
-                            <div class="d-flex justify-content-between">
-                                <div class="fs-1 italianno">Extra topping</div>
-                                <div class="fs-5 fst-italic align-self-center">5 kr</div>
-                            </div>
-                            <div>
-                                <div class="fs-5 fst-italic"></div>
                             </div>
                         </div>
                 </div>
@@ -210,6 +202,8 @@
             </div>
         </div>
     </div>
+        </div>
+    </div>
 
     <div id="pizza-carousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner d-flex align-items-center mt-4 mb-5">
@@ -275,11 +269,14 @@
         <hr class="w-75 border-1 opacity-100 my-4">
         <div id="social-media-container" class="d-flex gap-3">
             <a id="facebook" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://facebook.com/ntiuppsala" target="_blank">
+            <a id="facebook" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://facebook.com/ntiuppsala" target="_blank">
                 <img src="images/facebook_icon.png" alt="Facebook" id="facebook-icon" class="w-75">
             </a>
             <a id="instagram" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://instagram.com/ntiuppsala" target="_blank">
+            <a id="instagram" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://instagram.com/ntiuppsala" target="_blank">
                 <img src="images/instagram_icon.png" alt="Instagram" id="instagram-icon" class="w-75">
             </a>
+            <a id="x" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://x.com/ntiuppsala" target="_blank">
             <a id="x" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://x.com/ntiuppsala" target="_blank">
                 <img src="images/x_icon.png" alt="X" id="x-icon" style="scale: 0.95;" class="w-75">
             </a>
