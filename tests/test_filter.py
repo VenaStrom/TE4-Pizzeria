@@ -54,6 +54,26 @@ class TestFilter(TemplateTest):
         searchBox.fill("MARGHERITA")
         self.assertIn("Margherita", menu.all_inner_texts())
 
+    def testCheckboxes(self) -> None:
+        menu = self.page.locator("#menu-items-container")
+        
+        vegetarianCheckbox = self.page.locator("#filter-container #vegetarian")
+        vegetarianCheckbox.click()
+        self.assertIn("Margherita", menu.all_inner_texts())
+        self.assertNotIn("Hawaii", menu.all_inner_texts())
+        
+        hamCheckbox = self.page.locator("#filter-container #ham")
+        hamCheckbox.click()
+        self.assertIn("Hawaii", menu.all_inner_texts())
+        self.assertNotIn("Margherita", menu.all_inner_texts())
+
+        pineappleCheckbox = self.page.locator("#filter-container #pineapple")
+        pineappleCheckbox.click()
+        self.assertIn("Hawaii", menu.all_inner_texts())
+        self.assertNotIn("Margherita", menu.all_inner_texts())
+        self.assertNotIn("Capricciosa", menu.all_inner_texts()) 
+
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
