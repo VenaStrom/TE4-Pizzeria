@@ -45,19 +45,27 @@ const updateFilters = () => {
                 return { id, checked, name };
             });
 
+        const uncheckedExclusiveFilters = exclusiveFilters.filter((checkbox) => !checkbox.checked);
+        const checkedInclusiveFilters = inclusiveFilters.filter((checkbox) => checkbox.checked);
+
+        // If all the filters are untouched, return the entire array
+        if (uncheckedExclusiveFilters.length === 0 && checkedInclusiveFilters.length === 0) { return pizzas; }
+
         // Filters the pizzas based on the checkboxes
-        const filteredPizzas = pizzas.filter((pizza) => {
 
-            const uncheckedExclusiveFilters = exclusiveFilters.filter((checkbox) => { !checkbox.checked });
+        pizzas = pizzas.filter((pizza) => {
+            const ingredients = pizza.ingredients.map((ingredient) => ingredient.toLowerCase());
 
-            uncheckedExclusiveFilters.forEach((filter) => {
-                if (pizza.ingredients.includes(filter.name)) {
-                    return false;
-                }
-            });
+            if (uncheckedExclusiveFilters.length > 0) {
+                uncheckedExclusiveFilters.forEach((filter) => {
+                    if (ingredients.includes(filter.name.toLowerCase())) {
+                        return false;
+                    }
+                });
+            };
         });
 
-        return pizzas;
+        return filteredPizzas;
     };
 
     const filterSearch = (pizzas) => {
@@ -110,7 +118,7 @@ const updateFilters = () => {
     };
 
     let filteredPizzas = pizzas;
-    
+
     filteredPizzas = filterCheckboxes(filteredPizzas);
     filteredPizzas = filterSearch(filteredPizzas);
 
