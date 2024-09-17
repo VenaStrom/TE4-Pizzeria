@@ -2,13 +2,18 @@ import unittest
 from utils import *
 
 
-class TestName(TemplateTest):
+class TestNoScript(TemplateTest):
+    @classmethod
+    def setUpClass(self) -> None:
+        self.playwright = sync_playwright().start()
+        browserType = self.playwright.chromium
+        launchOptions = {"headless": True}
+        self.browser = browserType.launch(**launchOptions)
+        self.context = self.browser.new_context(java_script_enabled=False)
+        self.page = self.context.new_page()
+
     def setUp(self) -> None:
         super().setUp(fileToTest="index.html")
-
-    def setUpClass(self) -> None:
-        super().setUpClass()
-        self.context = self.browser.new_context(java_script_enabled=False)
 
     def doesBrowserExist(self) -> None:
         self.assertIsNotNone(self.page)
