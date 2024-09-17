@@ -44,19 +44,19 @@ class TestFilter(TemplateTest):
     def testSearch(self) -> None:
         searchBox = self.page.locator(".filter-container #search-box")
         menu = self.page.locator("#menu-items-container")
-        
+
         searchBox.fill("capri")
         self.assertIn("Capricciosa", menu.all_inner_texts())
-        
+
         searchBox.fill("waii")
         self.assertIn("Hawaii", menu.all_inner_texts())
-        
+
         searchBox.fill("MARGHERITA")
         self.assertIn("Margherita", menu.all_inner_texts())
 
     def testCheckboxes(self) -> None:
         menu = self.page.locator("#menu-items-container")
-        
+
         vegetarianCheckbox = self.page.locator("#filter-container #vegetarian")
         vegetarianCheckbox.click()
         self.assertIn("Margherita", menu.all_inner_texts())
@@ -65,7 +65,7 @@ class TestFilter(TemplateTest):
         vegetarianCheckbox.click()
         self.assertNotIn("Margherita", menu.all_inner_texts())
         self.assertIn("Hawaii", menu.all_inner_texts())
-        
+
         hamCheckbox = self.page.locator("#filter-container #ham")
         hamCheckbox.click()
         self.assertIn("Hawaii", menu.all_inner_texts())
@@ -80,7 +80,7 @@ class TestFilter(TemplateTest):
         pineappleCheckbox.click()
         self.assertIn("Hawaii", menu.all_inner_texts())
         self.assertNotIn("Margherita", menu.all_inner_texts())
-        self.assertNotIn("Capricciosa", menu.all_inner_texts()) 
+        self.assertNotIn("Capricciosa", menu.all_inner_texts())
         # Uncheck to make sure it works
         pineappleCheckbox.click()
         self.assertNotIn("Hawaii", menu.all_inner_texts())
@@ -93,7 +93,7 @@ class TestFilter(TemplateTest):
 
         minPrice = 80
         maxPrice = 95
-        
+
         # Set the price to the lowest possible and see if the correct result appears
         self.page.evaluate(f'document.querySelector("{priceSliderSelector}").value = "{minPrice}"')
         self.assertIn("Margherita", menu.all_inner_texts())
@@ -106,9 +106,6 @@ class TestFilter(TemplateTest):
         self.assertIn("Hawaii", menu.all_inner_texts())
         self.assertIn("La Casa", menu.all_inner_texts())
         self.assertIn("Pompeii", menu.all_inner_texts())
-        
-
-        
 
 
 if __name__ == "__main__":
