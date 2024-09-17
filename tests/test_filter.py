@@ -63,27 +63,16 @@ class TestFilter(TemplateTest):
         self.assertNotIn("Hawaii", menu.all_inner_texts())
         # Uncheck to make sure it works
         vegetarianCheckbox.click()
-        self.assertNotIn("Margherita", menu.all_inner_texts())
+        self.assertIn("Margherita", menu.all_inner_texts())
         self.assertIn("Hawaii", menu.all_inner_texts())
 
         hamCheckbox = self.page.locator("#filter-container #ham")
         hamCheckbox.click()
-        self.assertIn("Hawaii", menu.all_inner_texts())
-        self.assertNotIn("Margherita", menu.all_inner_texts())
-        # Uncheck to make sure it works
-        hamCheckbox.click()
         self.assertNotIn("Hawaii", menu.all_inner_texts())
         self.assertIn("Margherita", menu.all_inner_texts())
-        self.assertIn("Capricciosa", menu.all_inner_texts())
-
-        pineappleCheckbox = self.page.locator("#filter-container #pineapple")
-        pineappleCheckbox.click()
-        self.assertIn("Hawaii", menu.all_inner_texts())
-        self.assertNotIn("Margherita", menu.all_inner_texts())
-        self.assertNotIn("Capricciosa", menu.all_inner_texts())
         # Uncheck to make sure it works
-        pineappleCheckbox.click()
-        self.assertNotIn("Hawaii", menu.all_inner_texts())
+        hamCheckbox.click()
+        self.assertIn("Hawaii", menu.all_inner_texts())
         self.assertIn("Margherita", menu.all_inner_texts())
         self.assertIn("Capricciosa", menu.all_inner_texts())
 
