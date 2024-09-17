@@ -12,8 +12,7 @@
     <link rel="stylesheet" href="bootstrap/bootstrap.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/style.css">
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="bootstrap/bootstrap.js"></script>
     <script defer src="scripts/pizzas.js"></script>
     <script defer src="scripts/populateMenu.js"></script>
@@ -22,27 +21,100 @@
 
 <body>
     <div id="content" class="overflow-x-hidden">
-        <div class="bg d-flex justify-content-center align-items-center" style="background-image: url('images/1_background_img.jpg');
-            background-repeat: no-repeat; 
-            background-size: cover;
-            height: 100vh;
-            ">
+        <div class=" d-flex justify-content-center align-items-center" style="background-image: url('images/1_background_img.jpg');
+            background-repeat: no-repeat; height:100vh; background-size: cover; ">
 
             <div id="welcome-center" class="container-fluid bg-body shadow py-5 d-flex flex-column text-center">
                 <div class="welcome-text fs-3">Välkommen till</div>
                 <div class="display-1 italianno">Il Forno Magico!</div>
-                <p class="booking-info">Ring oss på <a class="opacity-75-hover" href="tel:0630-555-555"><strong>0630-555-555</strong></a> för att boka bord</p>
+                <p class="booking-info">Ring oss på <a class="opacity-75-hover"
+                        href="tel:0630-555-555"><strong>0630-555-555</strong></a> för att boka bord</p>
             </div>
         </div>
-        <div id="menu" class="d-flex flex-column align-items-center">
-            <div id="menu-title" class="display-1 italianno mb-4 mt-5">Meny</div>
-            <div id="menu-items-container" class="lh-sm position-relative">
-                <div class="container-fluid position-absolute top-2 bottom-7 
-                border-start border-end border-white opacity-50"></div>
+        <div class="container-fluid d-flex justify-content-center">
+            <div class="row col-6 d-flex justify-content-center custom-pseudo">
+                <!--Meny containern-->
+              <div id="menu" class="col-6 d-flex flex-column align-items-center">
+                <div id="menu-title" class="display-1 italianno mb-4 mt-5">Meny</div>
+                <div id="menu-items-container" class="lh-sm position-relative">
+                  <div class=""></div>
+                </div> 
+                <!--This is where all the pizzas are added via js-->
+                </div>
+              <!--Filter containern-->
+              <div id="filter-container" class=" p-5 col-6">
+                <div class="input-group col-6 mt-5 flex-nowrap">
+                    <input type="text" class="mt-5 bg-light form-control text-dark custom-placeholder-color" placeholder="Sök" aria-label="Sök" aria-describedby="addon-wrapping">
+                </div>
+                <h1 class="italianno mt-4">Ingredienser</h1>
+                <div class="form-check">
+                    <span class="glyphicon glyphicon-minus"></span>
+                    <input class="form-check-input custom-form-color" type="checkbox" value="" id="ham" checked>
+                    <label class="form-check-label fst-italic" for="ham">
+                        Skinka
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="pineapple" checked>
+                    <label class="form-check-label fst-italic" for="pineapple">
+                        Ananas
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="mushrooms" checked>
+                    <label class="form-check-label fst-italic" for="mushrooms">
+                        Champinjoner
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="shrimp" checked>
+                    <label class="form-check-label fst-italic" for="shrimp">
+                        Räkor
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="bacon" checked>
+                    <label class="form-check-label fst-italic" for="bacon">
+                        Bacon
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="onion" checked>
+                    <label class="form-check-label fst-italic" for="onion">
+                        Rödlök
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="egg" checked>
+                    <label class="form-check-label fst-italic" for="egg">
+                        Ägg
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="curry" checked>
+                    <label class="form-check-label fst-italic" for="curry">
+                        Curry
+                    </label>
+                </div>
+                <h1 class="italianno mt-4">Specialalternativ</h1>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="vegetarian" checked>
+                    <label class="form-check-label fst-italic" for="vegetarian">
+                        Vegetariskt
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="calzone" checked>
+                    <label class="form-check-label fst-italic" for="calzone">
+                        Inbakad
+                    </label>
+                </div>
+                <h1 class="italianno mt-4">Pris</h1>
+                <input class="slider accent col-6" name="age_slider" id="" type="range" value="95" max="95" min="1">
             </div>
-            <!--This is where all the pizzas are added via js-->
-        </div>
-    </div>
+            </div>
+            </div>
+          </div>
 
     <div id="pizza-carousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner d-flex align-items-center mt-4 mb-5">
@@ -107,13 +179,16 @@
         </div>
         <hr class="w-75 border-1 opacity-100 my-4">
         <div id="social-media-container" class="d-flex gap-3">
-            <a id="facebook" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://facebook.com/ntiuppsala" target="_blank">
+            <a id="facebook" class="w-75 d-flex justify-content-center opacity-75-hover"
+                href="https://facebook.com/ntiuppsala" target="_blank">
                 <img src="images/facebook_icon.png" alt="Facebook" id="facebook-icon" class="w-75">
             </a>
-            <a id="instagram" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://instagram.com/ntiuppsala" target="_blank">
+            <a id="instagram" class="w-75 d-flex justify-content-center opacity-75-hover"
+                href="https://instagram.com/ntiuppsala" target="_blank">
                 <img src="images/instagram_icon.png" alt="Instagram" id="instagram-icon" class="w-75">
             </a>
-            <a id="x" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://x.com/ntiuppsala" target="_blank">
+            <a id="x" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://x.com/ntiuppsala"
+                target="_blank">
                 <img src="images/x_icon.png" alt="X" id="x-icon" style="scale: 0.95;" class="w-75">
             </a>
         </div>
