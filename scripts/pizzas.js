@@ -1,32 +1,51 @@
 
 // Dictionary with pizza names, ingredients and prices
-const pizzas = {
-    "Margherita": {
-        "ingredients": ["Ost", "Tomatsås"],
-        "price": "80 kr"
+const pizzas = [
+    {
+        name: "Margherita",
+        ingredients: ["Ost", "Tomatsås"],
+        price: "80 kr",
+        id: "margherita",
     },
-    "Hawaii": {
-        "ingredients": ["Ost", "Tomatsås", "Skinka", "Ananas"],
-        "price": "90 kr"
+    {
+        name: "Hawaii",
+        ingredients: ["Ost", "Tomatsås", "Skinka", "Ananas"],
+        price: "90 kr",
+        id: "hawaii",
     },
-    "Calzone": {
-        "ingredients": ["Inbakad", "Ost", "Tomatsås", "Skinka"],
-        "price": "85 kr"
+    {
+        name: "Calzone",
+        ingredients: ["Inbakad", "Ost", "Tomatsås", "Skinka"],
+        price: "85 kr",
+        id: "calzone",
     },
-    "Capricciosa": {
-        "ingredients": ["Ost", "Tomatsås", "Skinka", "Champinjoner"],
-        "price": "90 kr"
+    {
+        name: "Capricciosa",
+        ingredients: ["Ost", "Tomatsås", "Skinka", "Champinjoner"],
+        price: "90 kr",
+        id: "capricciosa",
     },
-    "Vesuvio": {
-        "ingredients": ["Ost", "Tomatsås", "Skinka"],
-        "price": "85 kr"
+    {
+        name: "Vesuvio",
+        ingredients: ["Ost", "Tomatsås", "Skinka"],
+        price: "85 kr",
+        id: "vesuvio",
     },
-    "La Casa": {
-        "ingredients": ["Ost", "Tomatsås", "Champinjoner", "Räkor", "Skinka"],
-        "price": "95 kr"
+    {
+        name: "La Casa",
+        ingredients: ["Ost", "Tomatsås", "Champinjoner", "Räkor", "Skinka"],
+        price: "95 kr",
+        id: "la-casa",
     },
-    "Pompeii": {
-        "ingredients": ["Ost", "Tomatsås", "Bacon", "Rödlök", "Ägg", "Curry"],
-        "price": "90 kr"
+    {
+        name: "Pompeii",
+        ingredients: ["Ost", "Tomatsås", "Bacon", "Rödlök", "Ägg", "Curry"],
+        price: "90 kr",
+
     }
-};
+];
+
+const specialOptions = {
+    "vegetarian": ["Margherita",],
+    "calzone": ["Calzone"],
+}
