@@ -98,12 +98,12 @@ footer {
     bottom: 7% !important;
 }
 
-.custom-placeholder-color::placeholder {
+.search-custom-color::placeholder {
     color: #000000;
 }
 
-.custom-placeholder-color {
-    color: #000000; /* Change this to your desired text color */
+.search-custom-height {
+    height: 40px; /* Adjust the height as needed */
 }
 
 .opacity-75-hover:hover {
