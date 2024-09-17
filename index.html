@@ -12,8 +12,7 @@
     <link rel="stylesheet" href="bootstrap/bootstrap.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/style.css">
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="bootstrap/bootstrap.js"></script>
     <script defer src="scripts/menu.js" defer></script>
 </head>
@@ -29,18 +28,84 @@
             <div id="welcome-center" class="container-fluid bg-body shadow py-5 d-flex flex-column text-center">
                 <div class="welcome-text fs-3">Välkommen till</div>
                 <div class="display-1 italianno">Il Forno Magico!</div>
-                <p class="booking-info">Ring oss på <a class="opacity-75-hover" href="tel:0630-555-555"><strong>0630-555-555</strong></a> för att boka bord</p>
+                <p class="booking-info">Ring oss på <a class="opacity-75-hover"
+                        href="tel:0630-555-555"><strong>0630-555-555</strong></a> för att boka bord</p>
             </div>
         </div>
-        <div id="menu" class="d-flex flex-column align-items-center">
-            <div id="menu-title" class="display-1 italianno mb-4 mt-5">Meny</div>
-            <div id="menu-items-container" class="lh-sm position-relative">
-                <div class="container-fluid position-absolute top-2 bottom-7 
-                border-start border-end border-white opacity-50"></div>
+        <div class="container-fluid">
+            <div class="row col-12 d-flex justify-content-center ">
+              <div id="menu" class="col-3 d-flex flex-column align-items-center">
+                <div id="menu-title" class="display-1 italianno mb-4 mt-5">Meny</div>
+                <div id="menu-items-container" class="lh-sm position-relative">
+                  <div class="container-fluid position-absolute top-2 bottom-7 border-start border-end border-white opacity-50"></div>
+                </div>
+                <!--This is where all the pizzas are added via js-->
+              </div>
+              <div id="filter-container" class="mt-5 col-12 col-md-2">
+                <div class="input-group col-6 flex-nowrap">
+                    <input type="text" class="mt-5 bg-light form-control text-dark custom-placeholder-color" placeholder="Sök" aria-label="Sök" aria-describedby="addon-wrapping">
+                </div>
+                <div class="form-check mt-5">
+                    <span class="glyphicon glyphicon-minus"></span>
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckSkinka">
+                    <label class="form-check-label" for="flexCheckSkinka">
+                        Skinka
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckAnanas">
+                    <label class="form-check-label" for="flexCheckAnanas">
+                        Ananas
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckInbakad">
+                    <label class="form-check-label" for="flexCheckInbakad">
+                        Inbakad
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChampinjoner">
+                    <label class="form-check-label" for="flexCheckChampinjoner">
+                        Champinjoner
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckRäkor">
+                    <label class="form-check-label" for="flexCheckRäkor">
+                        Räkor
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckBacon">
+                    <label class="form-check-label" for="flexCheckBacon">
+                        Bacon
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckRödlök">
+                    <label class="form-check-label" for="flexCheckRödlök">
+                        Rödlök
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckÄgg">
+                    <label class="form-check-label" for="flexCheckÄgg">
+                        Ägg
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckCurry">
+                    <label class="form-check-label" for="flexCheckCurry">
+                        Curry
+                    </label>
+                </div>
+
+                <input class="slider" name="age_slider" id="age_slider" type="range" value="1" max="95" min="1">
             </div>
-            <!--This is where all the pizzas are added via js-->
-        </div>
-    </div>
+              </div>
+            </div>
+          </div>
 
     <div id="pizza-carousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner d-flex align-items-center mt-4 mb-5">
@@ -105,13 +170,16 @@
         </div>
         <hr class="w-75 border-1 opacity-100 my-4">
         <div id="social-media-container" class="d-flex gap-3">
-            <a id="facebook" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://facebook.com/ntiuppsala" target="_blank">
+            <a id="facebook" class="w-75 d-flex justify-content-center opacity-75-hover"
+                href="https://facebook.com/ntiuppsala" target="_blank">
                 <img src="images/facebook_icon.png" alt="Facebook" id="facebook-icon" class="w-75">
             </a>
-            <a id="instagram" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://instagram.com/ntiuppsala" target="_blank">
+            <a id="instagram" class="w-75 d-flex justify-content-center opacity-75-hover"
+                href="https://instagram.com/ntiuppsala" target="_blank">
                 <img src="images/instagram_icon.png" alt="Instagram" id="instagram-icon" class="w-75">
             </a>
-            <a id="x" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://x.com/ntiuppsala" target="_blank">
+            <a id="x" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://x.com/ntiuppsala"
+                target="_blank">
                 <img src="images/x_icon.png" alt="X" id="x-icon" style="scale: 0.95;" class="w-75">
             </a>
         </div>
