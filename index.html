@@ -28,10 +28,10 @@
             <div id="welcome-center" class="container-fluid bg-body shadow py-5 d-flex flex-column text-center">
                 <div class="welcome-text fs-3">Välkommen till</div>
                 <div class="display-1 italianno">Il Forno Magico!</div>
-                <p class="booking-info">Ring oss på <a class="opacity-75-hover"
-                        href="tel:0630-555-555"><strong>0630-555-555</strong></a> för att boka bord</p>
+                <p class="booking-info">Ring oss på <a class="opacity-75-hover" href="tel:0630-555-555"><strong>0630-555-555</strong></a> för att boka bord</p>
             </div>
         </div>
+
         <div class="container-fluid d-flex justify-content-center">
             <div class="row col-10 col-lg-6 d-flex justify-content-center custom-pseudo">
 
@@ -206,13 +206,15 @@
                     <!-- Price slider -->
                     <div class="container-fluid">
                         <h1 class="italianno mt-4">Pris</h1>
-                        <input class="slider accent col-12 col-lg-12 col-xxl-8" name="age_slider" id="" type="range" value="95" max="95" min="1">
+                        <div class="container-fluid d-flex flex-row align-items-center">
+                            <p class="me-2">80 kr</p>
+                            <input class="slider accent col-12 col-lg-12 col-xxl-8 me-2" name="age_slider" id="price-range" type="range" value="95" max="95" min="1">
+                            <p class="ms-2">95 kr</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
     </div>
 
     <div id="pizza-carousel" class="carousel slide" data-bs-ride="carousel">
@@ -236,10 +238,14 @@
                 <img src="images/slideshow-images/img7.jpg" class="carousel-img d-block mx-auto" alt="Pizza slice">
             </div>
         </div>
+
+        <!-- Left arrow on image carousel -->
         <button class="carousel-control-prev" type="button" data-bs-target="#pizza-carousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
+
+        <!-- Right arrow on image carousel -->
         <button class="carousel-control-next" type="button" data-bs-target="#pizza-carousel" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
@@ -276,20 +282,19 @@
                 <br><a id="email" class="opacity-75-hover" href="mailto:info@ilfornomagico.se">info@ilfornomagico.se</a>
             </div>
         </div>
+        
         <hr class="w-75 border-1 opacity-100 my-4">
+
         <div id="social-media-container" class="d-flex gap-3">
             <a id="facebook" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://facebook.com/ntiuppsala" target="_blank">
-                <a id="facebook" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://facebook.com/ntiuppsala" target="_blank">
-                    <img src="images/facebook_icon.png" alt="Facebook" id="facebook-icon" class="w-75">
-                </a>
-                <a id="instagram" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://instagram.com/ntiuppsala" target="_blank">
-                    <a id="instagram" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://instagram.com/ntiuppsala" target="_blank">
-                        <img src="images/instagram_icon.png" alt="Instagram" id="instagram-icon" class="w-75">
-                    </a>
-                    <a id="x" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://x.com/ntiuppsala" target="_blank">
-                        <a id="x" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://x.com/ntiuppsala" target="_blank">
-                            <img src="images/x_icon.png" alt="X" id="x-icon" style="scale: 0.95;" class="w-75">
-                        </a>
+                <img src="images/facebook_icon.png" alt="Facebook" id="facebook-icon" class="w-75">
+            </a>
+            <a id="instagram" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://instagram.com/ntiuppsala" target="_blank">
+                <img src="images/instagram_icon.png" alt="Instagram" id="instagram-icon" class="w-75">
+            </a>
+            <a id="x" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://x.com/ntiuppsala" target="_blank">
+                <img src="images/x_icon.png" alt="X" id="x-icon" style="scale: 0.95;" class="w-75">
+            </a>
         </div>
     </footer>
 </body>
