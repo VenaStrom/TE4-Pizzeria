@@ -19,12 +19,10 @@ const updateFilters = () => {
         });
 
         // If no pizzas are found, show a message
-        // if (filteredPizzas.length === 0) {
-        //     const menuContainer = document.getElementById("menu-items-container");
-        //     menuContainer.innerHTML = "<div class='fs-2 text-center' id=''>Inga pizzor matchar din sökning</div>";
-        // } else {
-
-        // };
+        if (filteredPizzas.length === 0) {
+            const menuContainer = document.getElementById("menu-items-container");
+            menuContainer.innerHTML = "<div class='fs-2 text-center' id=''>Inga pizzor matchar din sökning</div>";
+        };
     };
 
     const filterCheckboxes = (pizzas) => {
