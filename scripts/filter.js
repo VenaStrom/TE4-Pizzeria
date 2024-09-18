@@ -17,6 +17,14 @@ const updateFilters = () => {
             menuItemDOM.classList.remove("d-none");
             menuItemDOM.style.order = index;
         });
+
+        // If no pizzas are found, show a message
+        if (filteredPizzas.length === 0) {
+            const menuContainer = document.getElementById("menu-items-container");
+            menuContainer.innerHTML = "<div class='fs-2 text-center' id=''>Inga pizzor matchar din sökning</div>";
+        } else {
+
+        };
     };
 
     const filterCheckboxes = (pizzas) => {
@@ -51,13 +59,27 @@ const updateFilters = () => {
             if (uncheckedExclusiveFilters.length === 0) { return true; }
 
             const pizzaIngredients = pizza.ingredientIDs
-            
+
             for (let index = 0; index < uncheckedExclusiveFilters.length; index++) {
                 if (pizzaIngredients.includes(uncheckedExclusiveFilters[index].id)) {
                     return false;
                 };
             };
             return true;
+        });
+
+        // Filters the pizzas based on the inclusive checkboxes
+        filteredPizzas = filteredPizzas.filter((pizza) => {
+            if (checkedInclusiveFilters.length === 0) { return true; }
+
+            const checks = [];
+
+            for (let index = 0; index < checkedInclusiveFilters.length; index++) {
+                const allowedPizzas = specialOptions[checkedInclusiveFilters[index].id];
+                checks.push(allowedPizzas.includes(pizza.id));
+            };
+
+            return checks.every(Boolean);
         });
 
         return filteredPizzas;

@@ -41,7 +41,7 @@ const pizzas = [
         name: "Pompeii",
         ingredientIDs: ["cheese", "tomatoSauce", "bacon", "redOnion", "egg", "curry"],
         price: "90 kr",
-
+        id: "pompeii",
     }
 ];
 
@@ -64,6 +64,6 @@ pizzas.forEach(pizza => {
 });
 
 const specialOptions = {
-    "vegetarian": ["Margherita",],
-    "calzone": ["Calzone"],
+    "vegetarian": ["margherita",],
+    "calzone": ["calzone"],
 }
