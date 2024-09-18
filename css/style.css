@@ -36,7 +36,14 @@ a {
     border-color: #000000;
     background-color: #ff0000 !important;
     --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e") !important;
-  }
+}
+
+.custom-form-check-input[type=checkbox] {
+    border-color: #ffffff;
+    background-color: transparent !important;
+    --bs-form-check-bg-image: none !important;
+}
+
 .form-check-input:checked[type=checkbox] {
     border-color: #000000;
     background-color: #007e00 !important;
@@ -98,12 +105,12 @@ footer {
     bottom: 7% !important;
 }
 
-.custom-placeholder-color::placeholder {
+.search-custom-color::placeholder {
     color: #000000;
 }
 
-.custom-placeholder-color {
-    color: #000000; /* Change this to your desired text color */
+.search-custom-height {
+    height: 40px; /* Adjust the height as needed */
 }
 
 .opacity-75-hover:hover {
