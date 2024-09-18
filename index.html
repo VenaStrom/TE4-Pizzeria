@@ -36,10 +36,12 @@
 
                 <!-- Menu container -->
                 <div id="menu" class="bg-body order-sm-1 col-12 col-sm-6 d-flex flex-column align-items-center z-2">
-                    <div class="container-fluid d-flex justify-content-between align-items-center mb-4 mt-5">
+                    <div class="container-fluid d-flex justify-content-between">
                         <div id="menu-title" class="display-1 italianno mx-auto">Meny</div>
-                        <button id="filter-button" class="btn p-0 custom-btn">
-                            <i class="fas fa-filter fa-beat fa-2x" style="color: #ffffff;"></i>
+                        <button id="filter-button" class="btn custom-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="custom-icon" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                <path fill="#ffffff" d="M3.9 54.9C10.5 40.9 24.5 32 40 32l432 0c15.5 0 29.5 8.9 36.1 22.9s4.6 30.5-5.2 42.5L320 320.9 320 448c0 12.1-6.8 23.2-17.7 28.6s-23.8 4.3-33.5-3l-64-48c-8.1-6-12.8-15.5-12.8-25.6l0-79.1L9 97.3C-.7 85.4-2.8 68.8 3.9 54.9z" />
+                            </svg>
                         </button>
                     </div>
                     <div id="menu-items-container" class="p-0 container-fluid position-relative d-grid">
@@ -125,102 +127,101 @@
                         </div>
                     </noscript>
                 </div>
-            </div>
-            </noscript>
-            <!-- No scriptag ends -->
-        </div>
-        <!-- Filter container -->
-        <div id="filter-container" class="order-1 order-sm-2 p-1 p-sm-5 col-12 col-sm-6 z-1 d-none">
 
-            <!-- Search box -->
-            <div class="d-flex align-items-end mt-4 flex-nowrap">
-                <input type="text" class="bg-light form-control text-dark search-custom-color search-custom-height" id="search-box" placeholder="Sök" aria-label="Sök" aria-describedby="addon-wrapping">
-            </div>
+                </noscript>
+                <!-- No scriptag ends -->
 
-            <!-- Filter ingredients -->
-            <div class="container-fluid px-0 row">
-                <div class="col-6 col-sm-12">
-                    <h1 class="italianno mt-3">Ingredienser</h1>
-                    <div class="form-check">
-                        <span class="glyphicon glyphicon-minus"></span>
-                        <input class="form-check-input exclusive-filter" type="checkbox" value="" id="ham" checked>
-                        <label class="form-check-label fst-italic" for="ham">
-                            Skinka
-                        </label>
+                <!-- Filter container -->
+                <div id="filter-container" class="order-1 order-sm-2 p-1 p-sm-5 col-12 col-sm-6 z-1">
+
+                    <!-- Search box -->
+                    <div class="d-flex align-items-end mt-4 flex-nowrap">
+                        <input type="text" class="bg-light form-control text-dark search-custom-color search-custom-height" id="search-box" placeholder="Sök" aria-label="Sök" aria-describedby="addon-wrapping">
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input exclusive-filter" type="checkbox" value="" id="pineapple" checked>
-                        <label class="form-check-label fst-italic" for="pineapple">
-                            Ananas
-                        </label>
+
+                    <!-- Filter ingredients -->
+                    <div class="container-fluid px-0 row">
+                        <div class="col-6 col-sm-12">
+                            <h1 class="italianno mt-3">Ingredienser</h1>
+                            <div class="form-check">
+                                <span class="glyphicon glyphicon-minus"></span>
+                                <input class="form-check-input exclusive-filter" type="checkbox" value="" id="ham" checked>
+                                <label class="form-check-label fst-italic" for="ham">
+                                    Skinka
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input exclusive-filter" type="checkbox" value="" id="pineapple" checked>
+                                <label class="form-check-label fst-italic" for="pineapple">
+                                    Ananas
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input exclusive-filter" type="checkbox" value="" id="mushrooms" checked>
+                                <label class="form-check-label fst-italic" for="mushrooms">
+                                    Svamp
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input exclusive-filter" type="checkbox" value="" id="shrimp" checked>
+                                <label class="form-check-label fst-italic" for="shrimp">
+                                    Räkor
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input exclusive-filter" type="checkbox" value="" id="bacon" checked>
+                                <label class="form-check-label fst-italic" for="bacon">
+                                    Bacon
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input exclusive-filter" type="checkbox" value="" id="redOnion" checked>
+                                <label class="form-check-label fst-italic" for="redOnion">
+                                    Rödlök
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input exclusive-filter" type="checkbox" value="" id="egg" checked>
+                                <label class="form-check-label fst-italic" for="egg">
+                                    Ägg
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input exclusive-filter" type="checkbox" value="" id="curry" checked>
+                                <label class="form-check-label fst-italic" for="curry">
+                                    Curry
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Filter special options -->
+                        <div class="col-6 col-sm-12">
+                            <h1 class="italianno mt-3">Specialalternativ</h1>
+                            <div class="form-check">
+                                <input class="form-check-input custom-form-check-input inclusive-filter" type="checkbox" value="" id="vegetarian">
+                                <label class="form-check-label fst-italic" for="vegetarian">
+                                    Vegetariskt
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input custom-form-check-input inclusive-filter" type="checkbox" value="" id="calzone">
+                                <label class="form-check-label fst-italic" for="calzone">
+                                    Inbakad
+                                </label>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input exclusive-filter" type="checkbox" value="" id="mushrooms" checked>
-                        <label class="form-check-label fst-italic" for="mushrooms">
-                            Svamp
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input exclusive-filter" type="checkbox" value="" id="shrimp" checked>
-                        <label class="form-check-label fst-italic" for="shrimp">
-                            Räkor
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input exclusive-filter" type="checkbox" value="" id="bacon" checked>
-                        <label class="form-check-label fst-italic" for="bacon">
-                            Bacon
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input exclusive-filter" type="checkbox" value="" id="redOnion" checked>
-                        <label class="form-check-label fst-italic" for="redOnion">
-                            Rödlök
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input exclusive-filter" type="checkbox" value="" id="egg" checked>
-                        <label class="form-check-label fst-italic" for="egg">
-                            Ägg
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input exclusive-filter" type="checkbox" value="" id="curry" checked>
-                        <label class="form-check-label fst-italic" for="curry">
-                            Curry
-                        </label>
+
+                    <!-- Price slider -->
+                    <div class="container-fluid">
+                        <h1 class="italianno mt-4">Pris</h1>
+                        <input class="slider accent col-12 col-lg-12 col-xxl-8" name="age_slider" id="" type="range" value="95" max="95" min="1">
                     </div>
                 </div>
-
-                <!-- Filter special options -->
-                <div class="col-6 col-sm-12">
-                    <h1 class="italianno mt-3">Specialalternativ</h1>
-                    <div class="form-check">
-                        <input class="form-check-input custom-form-check-input inclusive-filter" type="checkbox" value="" id="vegetarian">
-                        <label class="form-check-label fst-italic" for="vegetarian">
-                            Vegetariskt
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input custom-form-check-input inclusive-filter" type="checkbox" value="" id="calzone">
-                        <label class="form-check-label fst-italic" for="calzone">
-                            Inbakad
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Price slider -->
-            <div class="container-fluid">
-                <h1 class="italianno mt-4">Pris</h1>
-                <input class="slider accent col-12 col-lg-12 col-xxl-8" name="age_slider" id="" type="range" value="95" max="95" min="1">
             </div>
         </div>
     </div>
-    </div>
-    </div>
-    </div>
-    </div>
+
 
     <div id="pizza-carousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner d-flex align-items-center mt-4 mb-5">
@@ -286,17 +287,14 @@
         <hr class="w-75 border-1 opacity-100 my-4">
         <div id="social-media-container" class="d-flex gap-3">
             <a id="facebook" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://facebook.com/ntiuppsala" target="_blank">
-                <a id="facebook" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://facebook.com/ntiuppsala" target="_blank">
-                    <img src="images/facebook_icon.png" alt="Facebook" id="facebook-icon" class="w-75">
-                </a>
-                <a id="instagram" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://instagram.com/ntiuppsala" target="_blank">
-                    <a id="instagram" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://instagram.com/ntiuppsala" target="_blank">
-                        <img src="images/instagram_icon.png" alt="Instagram" id="instagram-icon" class="w-75">
-                    </a>
-                    <a id="x" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://x.com/ntiuppsala" target="_blank">
-                        <a id="x" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://x.com/ntiuppsala" target="_blank">
-                            <img src="images/x_icon.png" alt="X" id="x-icon" style="scale: 0.95;" class="w-75">
-                        </a>
+                <img src="images/facebook_icon.png" alt="Facebook" id="facebook-icon" class="w-75">
+            </a>
+            <a id="instagram" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://instagram.com/ntiuppsala" target="_blank">
+                <img src="images/instagram_icon.png" alt="Instagram" id="instagram-icon" class="w-75">
+            </a>
+            <a id="x" class="w-75 d-flex justify-content-center opacity-75-hover" href="https://x.com/ntiuppsala" target="_blank">
+                <img src="images/x_icon.png" alt="X" id="x-icon" style="scale: 0.95;" class="w-75">
+            </a>
         </div>
     </footer>
 </body>

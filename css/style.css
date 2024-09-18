@@ -31,6 +31,10 @@ a {
     border: none;
 }
 
+.custom-icon {
+height: 2rem;
+}
+
 .custom-btn:hover{
     opacity: 0.75;
 }
@@ -38,7 +42,7 @@ a {
 #filter-container {
     position: relative;
     z-index: 1; /* Lower z-index */
-    transform: translateX(-100%);
+    transform: translateX(0);
 }
 
 #menu-items-container {
