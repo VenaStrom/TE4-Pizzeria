@@ -19,12 +19,12 @@ const updateFilters = () => {
         });
 
         // If no pizzas are found, show a message
-        if (filteredPizzas.length === 0) {
-            const menuContainer = document.getElementById("menu-items-container");
-            menuContainer.innerHTML = "<div class='fs-2 text-center' id=''>Inga pizzor matchar din sökning</div>";
-        } else {
+        // if (filteredPizzas.length === 0) {
+        //     const menuContainer = document.getElementById("menu-items-container");
+        //     menuContainer.innerHTML = "<div class='fs-2 text-center' id=''>Inga pizzor matchar din sökning</div>";
+        // } else {
 
-        };
+        // };
     };
 
     const filterCheckboxes = (pizzas) => {
@@ -43,7 +43,6 @@ const updateFilters = () => {
             .map((checkbox) => {
                 const id = checkbox.id;
                 const checked = checkbox.checked;
-
 
                 return { id, checked };
             });
@@ -145,3 +144,4 @@ const updateFilters = () => {
 
 document.querySelector("#search-box").addEventListener("input", updateFilters);
 document.querySelector("#filter-container:not(#search-box)").addEventListener("change", updateFilters);
+document.addEventListener("DOMContentLoaded", updateFilters);
