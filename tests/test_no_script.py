@@ -2,7 +2,16 @@ import unittest
 from utils import *
 
 
-class TestMenu(TemplateTest):
+class TestNoScript(TemplateTest):
+    @classmethod
+    def setUpClass(self) -> None:
+        self.playwright = sync_playwright().start()
+        browserType = self.playwright.chromium
+        launchOptions = {"headless": True}
+        self.browser = browserType.launch(**launchOptions)
+        self.context = self.browser.new_context(java_script_enabled=False)
+        self.page = self.context.new_page()
+
     def setUp(self) -> None:
         super().setUp(fileToTest="index.html")
 
@@ -15,15 +24,15 @@ class TestMenu(TemplateTest):
     def doesNameExist(self) -> None:
         if (self.__class__.__name__ == "TestName"):
             self.fail("Test class name is not set. Please change")
-
+            
     def testSelf(self) -> None:
         self.doesBrowserExist()
         self.doesPageExist()
         self.doesNameExist()
-
+ 
     # new test function goes here
 
-    def testBasicMenu(self) -> None:
+    def testMenu(self) -> None:
         self.assertInAll([
             "Hawaii",
             "90 kr",
@@ -32,11 +41,10 @@ class TestMenu(TemplateTest):
             "Pompeii",
             "90 kr"
         ], self.page.content())
+        
+    def testFilterButtonVisible(self) -> None:
+        self.assertFalse(self.page.locator("#show-filters").is_visible())
 
-    def testTopping(self) -> None:
-        # "Extra topping" should not be in the menu, rather it should be outside of it
-        menu = self.page.locator("#menu-items-container")
-        self.assertNotIn("Extra topping", menu.all_inner_texts())
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
