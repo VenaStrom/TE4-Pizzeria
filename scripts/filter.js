@@ -21,7 +21,16 @@ const updateFilters = () => {
         // If no pizzas are found, show a message
         if (filteredPizzas.length === 0) {
             const menuContainer = document.getElementById("menu-items-container");
-            menuContainer.innerHTML = "<div class='fs-2 text-center' id=''>Inga pizzor matchar din sökning</div>";
+            menuContainer.innerHTML += "<div class='fs-2 text-center' id='no-matches'>Inga pizzor matchar din sökning</div>";
+            
+            document.getElementById("extra-toppings").classList.add("d-none");
+
+        } else {
+            const menuContainer = document.getElementById("menu-items-container");
+            // Question mark is used to check if the element exists before removing it
+            menuContainer.querySelector("#no-matches")?.remove();
+
+            document.getElementById("extra-toppings").classList.remove("d-none");
         };
     };
 
