@@ -21,8 +21,10 @@ const updateFilters = () => {
         // If no pizzas are found, show a message
         if (filteredPizzas.length === 0) {
             const menuContainer = document.getElementById("menu-items-container");
-            menuContainer.innerHTML += "<div class='fs-2 text-center' id='no-matches'>Inga pizzor matchar din sökning</div>";
-            
+            if (!menuContainer.querySelector("#no-matches")) {
+                menuContainer.innerHTML += "<div class='fs-2 text-center' id='no-matches'>Inga pizzor matchar din sökning</div>";
+            };
+
             document.getElementById("extra-toppings").classList.add("d-none");
 
         } else {
