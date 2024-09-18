@@ -26,7 +26,53 @@ a {
     transition: opacity 0.4s;
 }
 
-/*Overwrites the bootstrap css*/
+.custom-btn{
+    background: none; 
+    border: none;
+}
+
+.custom-btn:hover{
+    opacity: 0.75;
+}
+
+#filter-container {
+    position: relative;
+    z-index: 1; /* Lower z-index */
+    transform: translateX(-100%);
+}
+
+#menu-items-container {
+    position: relative;
+    z-index: 2; /* Higher z-index */
+}
+
+@keyframes slide-right {
+    0% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.slide-animation-right {
+    animation: slide-right 1s ease-in-out forwards;
+}
+
+@keyframes slide-left {
+    0% {
+        transform: translateX(50%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.slide-animation-left {
+    animation: slide-left 1s ease-in-out forwards;
+}
+
+/*Overwrites the bootstrap css starts here*/
 .form-check-input:focus {
     border-color: #000000;
     outline: 0;
@@ -50,6 +96,7 @@ a {
     --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e") !important;
 }
 
+/*Overwrites the bootstrap css end here*/
 .accent {
     accent-color: rgb(255, 255, 255);
 }
@@ -60,6 +107,7 @@ a {
 
 .custom-pseudo::before,
 .custom-pseudo::after {
+    z-index: 3;
     content: '';
     position: absolute;
     top: 5vh;
@@ -86,7 +134,6 @@ a {
     width: 1px; /* Adjust the width of the border as needed */
     background-color: rgb(255, 255, 255); /* Adjust the color of the border as needed */
 }
-
 
 footer {
     font-size: 80%;
@@ -127,5 +174,4 @@ footer {
     .booking-info{
         font-size: 0.7rem !important;
     }
-
 }

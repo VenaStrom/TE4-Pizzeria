@@ -12,12 +12,12 @@
     <link rel="stylesheet" href="bootstrap/bootstrap.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/font-awesome.min.css">
     <script src="bootstrap/bootstrap.js"></script>
     <script defer src="scripts/pizzas.js"></script>
     <script defer src="scripts/populateMenu.js"></script>
     <script defer src="scripts/filter.js"></script>
+    <script defer src="scripts/filterButton.js"></script>
 </head>
 
 <body>
@@ -34,16 +34,23 @@
         <div class="container-fluid d-flex justify-content-center">
             <div class="row col-10 col-lg-6 d-flex justify-content-center custom-pseudo">
                 <!-- Menu containern -->
-                <div id="menu" class="order-2 order-sm-1 col-12 col-sm-6 d-flex flex-column align-items-center">
-                    <div id="menu-title" class="display-1 italianno mb-4 mt-5">Meny</div>
-                    <div id="menu-items-container" class="lh-sm p-0 container-fluid position-relative d-grid">
-                        
+
+                <div id="menu" class="bg-body order-sm-1 col-12 col-sm-6 d-flex flex-column align-items-center z-2">
+                    <div class="container-fluid d-flex justify-content-between align-items-center mb-4 mt-5">
+                        <div id="menu-title" class="display-1 italianno mx-auto">Meny</div>
+                        <button id="filter-button" class="btn p-0 custom-btn">
+                            <i class="fas fa-filter fa-beat fa-2x" style="color: #ffffff;"></i>
+                        </button>
+                    </div>
+                    <div id="menu-items-container" class="p-0 container-fluid position-relative d-grid">
+
                     </div>
                     <!-- This is where all the pizzas are added via js -->
                     <div class="d-flex justify-content-between container-fluid px-4">
                         <div class="fs-1 italianno">Extra topping</div>
                         <div class="fs-5 fst-italic">5 kr</div>
                     </div>
+                    <!-- Noscript tag begins -->
                     <noscript>
                         <div class="d-flex mb-4 flex-column px-4">
                             <div class="d-flex justify-content-between">
@@ -117,9 +124,10 @@
                 </div>
             </div>
             </noscript>
+            <!-- No scriptag ends -->
                 </div>
                 <!-- Filter container -->
-                <div id="filter-container" class="order-1 order-sm-2 p-1 p-sm-5 col-12 col-sm-6">
+                <div id="filter-container" class="order-1 order-sm-2 p-1 p-sm-5 col-12 col-sm-6 z-1 d-none">
                     <div class="d-flex align-items-end mt-4 flex-nowrap">
                         <input type="text" class="bg-light form-control text-dark search-custom-color search-custom-height" placeholder="Sök" aria-label="Sök" aria-describedby="addon-wrapping">
                     </div>
