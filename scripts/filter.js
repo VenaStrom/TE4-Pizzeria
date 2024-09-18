@@ -52,16 +52,13 @@ const updateFilters = () => {
 
             const pizzaIngredients = pizza.ingredientIDs
             
-            console.log(pizzaIngredients);
             for (let index = 0; index < uncheckedExclusiveFilters.length; index++) {
-                console.log(uncheckedExclusiveFilters[index].id);
                 if (pizzaIngredients.includes(uncheckedExclusiveFilters[index].id)) {
                     return false;
                 };
             };
             return true;
         });
-        console.log(filteredPizzas);
 
         return filteredPizzas;
     };
