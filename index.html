@@ -12,19 +12,18 @@
     <link rel="stylesheet" href="bootstrap/bootstrap.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/font-awesome.min.css">
     <script src="bootstrap/bootstrap.js"></script>
     <script defer src="scripts/listOfPizzas.js"></script>
     <script defer src="scripts/populateMenu.js"></script>
     <script defer src="scripts/filter.js"></script>
     <script defer src="scripts/setPriceSlider.js"></script>
+    <script defer src="scripts/filterButton.js"></script>
 </head>
 
 <body>
     <div id="content" class="overflow-x-hidden">
-        <div class=" d-flex justify-content-center align-items-center" style="background-image: url('images/1_background_img.jpg');
-            background-repeat: no-repeat; height:100vh; background-size: cover; ">
+        <div class="bg-image d-flex justify-content-center align-items-center">
 
             <div id="welcome-center" class="container-fluid bg-body shadow py-5 d-flex flex-column text-center">
                 <div class="welcome-text fs-3">Välkommen till</div>
@@ -34,12 +33,20 @@
         </div>
 
         <div class="container-fluid d-flex justify-content-center">
-            <div class="row col-10 col-lg-6 d-flex justify-content-center custom-pseudo">
+            <div class="row col-10 col-lg-8 d-flex justify-content-center">
 
                 <!-- Menu container -->
-                <div id="menu" class="order-2 order-sm-1 col-12 col-sm-6 d-flex flex-column align-items-center">
-                    <div id="menu-title" class="display-1 italianno mb-4 mt-5">Meny</div>
-                    <div id="menu-items-container" class="lh-sm p-0 container-fluid position-relative d-grid">
+                <div id="menu" class="bg-body order-2 order-sm-1 col-12 col-sm-6 d-flex flex-column align-items-center z-1 custom-left-border custom-right-border">
+                    <div class="container-fluid d-flex justify-content-between">
+                        <div id="menu-title" class="display-1 italianno mx-auto">Meny</div>
+                        <button id="filter-button" class="btn custom-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="custom-icon" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                <path fill="#ffffff" d="M3.9 54.9C10.5 40.9 24.5 32 40 32l432 0c15.5 0 29.5 8.9 36.1 22.9s4.6 30.5-5.2 42.5L320 320.9 320 448c0 12.1-6.8 23.2-17.7 28.6s-23.8 4.3-33.5-3l-64-48c-8.1-6-12.8-15.5-12.8-25.6l0-79.1L9 97.3C-.7 85.4-2.8 68.8 3.9 54.9z" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div id="menu-items-container" class="p-0 container-fluid position-relative d-grid">
                         <!-- This is where all the pizzas are added via js -->
                     </div>
 
@@ -122,9 +129,10 @@
                         </div>
                     </noscript>
                 </div>
+                <!-- noscript tag ends here -->
 
                 <!-- Filter container -->
-                <div id="filter-container" class="order-1 order-sm-2 p-1 p-sm-5 col-12 col-sm-6">
+                <div id="filter-container" class="order-1 order-sm-2 p-1 p-sm-5 col-12 col-sm-6 d-none custom-right-border">
 
                     <!-- Search box -->
                     <div class="d-flex align-items-end mt-4 flex-nowrap">
@@ -218,6 +226,7 @@
         </div>
     </div>
 
+    <!-- Image carousel -->
     <div id="pizza-carousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner d-flex align-items-center mt-4 mb-5">
             <div class="carousel-item active" data-bs-interval="2000">
@@ -283,7 +292,7 @@
                 <br><a id="email" class="opacity-75-hover" href="mailto:info@ilfornomagico.se">info@ilfornomagico.se</a>
             </div>
         </div>
-        
+
         <hr class="w-75 border-1 opacity-100 my-4">
 
         <div id="social-media-container" class="d-flex gap-3">
