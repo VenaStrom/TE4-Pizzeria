@@ -32,6 +32,13 @@ a {
     transition: opacity 0.4s;
 }
 
+.bg-image {
+    background-image: url('../images/1_background_img.jpg');
+    background-repeat: no-repeat;
+    height: 100vh;
+    background-size: cover;
+}
+
 .custom-btn {
     background: none;
     border: none;
@@ -74,7 +81,7 @@ a {
     }
 }
 
-/*576px is small screen in bootstrap*/
+/*Removes the animations on small screens*/
 @media (max-width: 576px) {
     .slide-animation-left {
         animation: none;
@@ -113,6 +120,7 @@ a {
 
 /*Overwrites the bootstrap css end here*/
 
+/*Custom css to change the color of the price slider*/
 .accent {
     accent-color: rgb(255, 255, 255);
 }
@@ -141,10 +149,6 @@ a {
     right: 0;
 }
 
-footer {
-    font-size: 80%;
-}
-
 .carousel-img {
     width: 60vmin;
     box-shadow: var(--bs-box-shadow);
@@ -158,13 +162,13 @@ footer {
     bottom: 7% !important;
 }
 
+/*custom css for the search*/
 .search-custom-color::placeholder {
     color: #000000;
 }
 
 .search-custom-height {
     height: 40px;
-    /* Adjust the height as needed */
 }
 
 .opacity-75-hover:hover {
@@ -172,7 +176,7 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .bg {
+    .bg-image {
         background-position: left -17vh bottom 0;
     }
 
