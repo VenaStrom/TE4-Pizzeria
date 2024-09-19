@@ -142,15 +142,28 @@ const updateFilters = () => {
         return returnList;
     };
 
+    const filterPrice = (pizzas) => {
+        const slider = document.getElementById("price-range");
+
+        const filteredPizzas = pizzas.filter((pizza) => {
+            return parseFloat(pizza.price) <= parseFloat(slider.valueAsNumber);
+        });
+
+        return filteredPizzas;
+    };
+
     let filteredPizzas = pizzas;
 
     // Filter by checkboxes first for performance reasons
     filteredPizzas = filterCheckboxes(filteredPizzas);
+    filteredPizzas = filterPrice(filteredPizzas);
     filteredPizzas = filterSearch(filteredPizzas);
 
     updateOrder(filteredPizzas);
 };
 
 document.querySelector("#search-box").addEventListener("input", updateFilters);
+document.querySelector("#price-range").addEventListener("input", updateFilters);
+document.querySelector("#price-range").addEventListener("change", updateFilters);
 document.querySelector("#filter-container:not(#search-box)").addEventListener("change", updateFilters);
 document.addEventListener("DOMContentLoaded", updateFilters);

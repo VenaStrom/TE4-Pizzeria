@@ -59,6 +59,7 @@ const ingredientsDictSWE = {
     calzone: ["Inbakad"],
 };
 
+// Make the ingredients key in the pizzas array an array of localized strings
 pizzas.forEach(pizza => {
     pizza["ingredients"] = pizza.ingredientIDs.map(ingredient => ingredientsDictSWE[ingredient][0]);
 });
