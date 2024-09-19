@@ -67,7 +67,7 @@ a {
     }
 }
 
-.slide-aniFmation-left {
+.slide-animation-left {
     animation: slide-left 1s ease-in-out forwards;
 }
 
