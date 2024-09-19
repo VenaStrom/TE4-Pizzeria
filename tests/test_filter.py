@@ -85,16 +85,18 @@ class TestFilter(TemplateTest):
 
         # Set the price to the lowest possible and see if the correct result appears
         self.page.evaluate(f'document.querySelector("{priceSliderSelector}").value = "{minPrice}"')
+        self.page.evaluate("updateFilters()")
         self.assertIn("Margherita", menu.all_inner_texts()[0])
         self.assertNotIn("Hawaii", menu.all_inner_texts()[0])
         self.assertNotIn("La Casa", menu.all_inner_texts()[0])
 
         # Set the price to the highest possible and see if the correct result appears
         self.page.evaluate(f'document.querySelector("{priceSliderSelector}").value = "{maxPrice}"')
+        self.page.evaluate("updateFilters()")
         self.assertIn("Margherita", menu.all_inner_texts()[0])
         self.assertIn("Hawaii", menu.all_inner_texts()[0])
         self.assertIn("La Casa", menu.all_inner_texts()[0])
-        self.assertIn("Pompeii", menu.all_innerA_texts()[0])
+        self.assertIn("Pompeii", menu.all_inner_texts()[0])
 
 
 if __name__ == "__main__":
