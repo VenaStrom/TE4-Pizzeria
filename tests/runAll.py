@@ -50,7 +50,7 @@ if __name__ == "__main__":
 
     # Discover the tests
     loader = unittest.TestLoader()
-    suite = loader.discover("tests", pattern="test_*.py")
+    suite = loader.discover("tests", pattern="test*.py")
 
     # Run the tests
     runner = JSONTestRunner(verbosity=2)
