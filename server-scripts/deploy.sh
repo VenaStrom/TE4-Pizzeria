@@ -15,7 +15,7 @@ fi
 VERSION_TAG=$1
 
 # Directory to ensure we're in
-TARGET_DIR="/var/www"
+TARGET_DIR="/var/www/html"
 
 # Ensure the script is running in /var/www
 if [ "$(pwd)" != "$TARGET_DIR" ]; then
@@ -24,7 +24,7 @@ if [ "$(pwd)" != "$TARGET_DIR" ]; then
 fi
 
 # Perform git fetch to update remote references
-echo "Fetching latest changes from the repository..."
+    echo "Fetching latest changes from the repository..."
 git fetch --all || { echo "Git fetch failed"; exit 1; }
 
 # Checkout the specified version tag
