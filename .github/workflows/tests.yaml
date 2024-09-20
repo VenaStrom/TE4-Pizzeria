@@ -1,4 +1,4 @@
-name: Automated Python Playwright Testing
+name: Run tests
 
 on:
     push:
