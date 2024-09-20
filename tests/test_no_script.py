@@ -24,25 +24,20 @@ class TestNoScript(TemplateTest):
     def doesNameExist(self) -> None:
         if (self.__class__.__name__ == "TestName"):
             self.fail("Test class name is not set. Please change")
-            
+
     def testSelf(self) -> None:
         self.doesBrowserExist()
         self.doesPageExist()
         self.doesNameExist()
- 
+
     # new test function goes here
 
-    def testMenu(self) -> None:
+    def testNoScriptMessage(self) -> None:
         self.assertInAll([
-            "Hawaii",
-            "90 kr",
-            "Vesuvio",
-            "85 kr",
-            "Pompeii",
-            "90 kr"
+            "Tyvärr är vår meny för närvarande inte tillgänglig",
         ], self.page.content())
-        
-    def testFilterButtonVisible(self) -> None:
+
+    def testNoScriptFilterButton(self) -> None:
         self.assertFalse(self.page.locator("#show-filters").is_visible())
 
 

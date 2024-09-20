@@ -27,24 +27,31 @@ class TestFilter(TemplateTest):
         button = self.page.locator("#filter-button")
         container = self.page.locator("#filter-container")
 
-        # check if the container is hidden
+        # check if the container is hidden. At this point it shouldn't
         self.assertFalse(container.is_visible())
 
         button.click()
-        container.wait_for("visible", timeout=5000)
+        self.page.wait_for_timeout(1100)
 
         # check if the container is visible
         self.assertTrue(container.is_visible())
 
         # close and reopen
         button.click()
-        container.wait_for("visible", timeout=5000)
+        self.page.wait_for_timeout(1100)
         self.assertFalse(container.is_visible())
         button.click()
-        container.wait_for("visible", timeout=5000)
+        self.page.wait_for_timeout(1100)
         self.assertTrue(container.is_visible())
 
     def testSearch(self) -> None:
+        button = self.page.locator("#filter-button")
+        container = self.page.locator("#filter-container")
+
+        if not container.is_visible():
+            button.click()
+            self.page.wait_for_timeout(1100)
+
         searchBox = self.page.locator("#filter-container #search-box")
         menu = self.page.locator("#menu-items-container")
 
@@ -58,6 +65,13 @@ class TestFilter(TemplateTest):
         self.assertIn("Margherita", menu.all_inner_texts()[0])
 
     def testCheckboxes(self) -> None:
+        button = self.page.locator("#filter-button")
+        container = self.page.locator("#filter-container")
+
+        if not container.is_visible():
+            button.click()
+            self.page.wait_for_timeout(1100)
+
         menu = self.page.locator("#menu-items-container")
 
         vegetarianCheckbox = self.page.locator("#filter-container #vegetarian")
@@ -80,6 +94,13 @@ class TestFilter(TemplateTest):
         self.assertIn("Capricciosa", menu.all_inner_texts()[0])
 
     def testPriceRange(self) -> None:
+        button = self.page.locator("#filter-button")
+        container = self.page.locator("#filter-container")
+
+        if not container.is_visible():
+            button.click()
+            self.page.wait_for_timeout(1100)
+
         menu = self.page.locator("#menu-items-container")
         priceSliderSelector = "#filter-container #price-range"
 
