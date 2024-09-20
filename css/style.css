@@ -52,6 +52,15 @@ a {
     opacity: 0.75;
 }
 
+#menu-items-container::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  #menu {
+    height: 65rem;
+  }
+
 /*animations for the filter and menu*/
 .slide-animation-right {
     animation: slide-right 1s ease-in-out forwards;

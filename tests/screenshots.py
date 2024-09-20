@@ -1,132 +1,94 @@
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.chrome.options import Options
-import os
-from datetime import datetime, timezone
+from playwright.sync_api import sync_playwright
+from os import path, mkdir
+from datetime import datetime, timezone, timedelta
 import time
+import concurrent.futures
 
-# settings for how the tests will be executed
-do_not_close_browser = False  # if True, the browser will stay open after the tests are done, otherwise it will close
-hide_window = True  # if True, the browser will not be shown while the tests are executed
+screenshotFolder: str = "tests/generated-screenshots"  # folder for the screenshots
 
-# ---------------------------- This section of code starts the browser and loads the website ----------------------------
-chr_options = Options()
-# chr_options = webdriver.ChromeOptions()
-
-if do_not_close_browser:
-    chr_options.add_experimental_option("detach", True)
-
-if hide_window:
-    chr_options.add_argument("--headless")
-
-chr_options.add_argument("--disable-search-engine-choice-screen")
-# -------------------------------------------------------------------------------------------------------------------------
+# function for getting the file path for the page to screenshot
 
 
-def initial_screenshot_gen():
-    if os.path.isdir("generatedScreenshots") != True:  # create a folder for the screenshots if it doesn't exist
-        os.mkdir("generatedScreenshots")
-
-    sub_folder_name = "UTC"+get_current_date_and_time()  # create a subfolder-name with the current time
-    save_path = "generatedScreenshots/" + sub_folder_name + "/"  # set the save path to the subfolder
-    os.mkdir(save_path)  # create the subfolder
-
-    initial_desktop_screenshots(save_path)
-    initial_mobile_screenshots(save_path)
+def getPagePath(pagePathFromRoot: str) -> str:
+    pagePath = path.abspath(path.join(path.dirname(__file__), "..", pagePathFromRoot))
+    return f"file://{pagePath}"
 
 
-def initial_desktop_screenshots(save_path):  # generates a screenshot of the start page in two resolutions
+# resolutions for the screenshots
+resolutions: dict[str, dict[str, int]] = {
+    "1080p": {"width": 1920, "height": 1080},
+    "1440p": {"width": 2560, "height": 1440},
+    "4k": {"width": 3840, "height": 2160},
+    "8k": {"width": 7680, "height": 4320},
+    "iPhone SE": {"width": 320, "height": 568},
+    "iPhone XR": {"width": 414, "height": 896},
+    "iPhone 12 Pro": {"width": 390, "height": 844},
+    "iPhone 14 Pro Max": {"width": 428, "height": 926},
+    "Pixel 7": {"width": 393, "height": 851},
+    "Samsung Galaxy S8+": {"width": 360, "height": 740},
+    "Galaxy Fold": {"width": 280, "height": 653},
+    "iPad": {"width": 768, "height": 1024},
+}
 
-    driver = webdriver.Chrome(options=chr_options)  # start the browser with the options
-    driver.get(os.path.join(os.path.dirname(os.getcwd()), "JITS-pizzeria", 'index.html'))  # load the website
-
-    desktop_resize_and_capture(driver, 1920, 1080, "1080p", save_path)  # test for checking desktop 1080p resolution
-    desktop_resize_and_capture(driver, 2560, 1440, "1440p", save_path)  # test for checking desktop 1440p resolution
-
-    driver.quit()  # close the browser
-
-
-def desktop_resize_and_capture(driver, width, height, res_name, save_path):
-
-    driver.set_window_size(width, height)  # set the window size to the desired resolution
-
-    scroll_and_snap(driver, save_path, res_name)  # scroll and take screenshots
-
-
-def initial_mobile_screenshots(save_path):
-
-    mobile_resolutions = ['iPhone SE', 'iPhone XR', 'iPhone 12 Pro', 'iPhone 14 Pro Max', 'Pixel 7', 'Samsung Galaxy S8+']  # list of mobile resolutions
-
-    for res in mobile_resolutions:
-        mobile_resize_and_capture(res, save_path)  # take a screenshot of the website with the mobile resolution
-
-
-def mobile_resize_and_capture(res_name, save_path):
-
-    mobile_emulation = {"deviceName": res_name}  # set the device name to the desired resolution
-    chr_options.add_experimental_option("mobileEmulation", mobile_emulation)  # set the mobile emulation option to the desired resolution
-
-    driver = webdriver.Chrome(options=chr_options)  # start the browser with the options
-    driver.get(os.path.join(os.path.dirname(os.getcwd()), "JITS-pizzeria", 'index.html'))  # load the website
-
-    scroll_and_snap(driver, save_path, res_name)  # scroll and take screenshots
-
-    driver.quit()  # close the browser
+locators: dict[str, dict[str, str | None]] = {  # locators for scrolling to specific elements on the page and clicking buttons if needed
+    "top": {"selector": None, "button": None},
+    "menu": {"selector": "#menu", "button": None},
+    "filter": {"selector": "#menu", "button": "#filter-button"},
+    "carousel": {"selector": "#pizza-carousel", "button": None},
+    "footer": {"selector": "footer", "button": None},
+}
 
 
-def scroll_and_snap(driver, save_path, res_name):
-    html = driver.find_element(By.TAG_NAME, 'html')  # prepare for scroll
+def takeScreenshot(pagePath: str, outputFile: str, resolution: dict[str, dict[str, int]], locator: dict[str, dict[str, str | None]]) -> None:  # function for taking a screenshot of a page
+    with sync_playwright() as p:  # create a new playwright instance
+        browser = p.chromium.launch(headless=True)  # launch browser hidden
+        page = browser.new_page()  # create a new page
 
-    scroll(driver, html, "top")  # scroll to top
-    # save screenshot of the top of the page with the resolution in the filename
-    save_screenshot(driver, save_path, res_name, " top ")
+        fileUrl = getPagePath(pagePath)  # get the file path for the page to screenshot
+        page.set_viewport_size(resolution)  # set the resolution of the page to screenshot
+        page.goto(fileUrl)  # go to the page
 
-    scroll(driver, html, "bottom")  # scroll to bottom
-    # save screenshot of the bottom of the page with the resolution in the filename
-    save_screenshot(driver, save_path, res_name, " bottom ")
+        if locator["selector"]:  # if there is a selector, scroll to it if needed
+            page.locator(locator["selector"]).scroll_into_view_if_needed()
+        if locator["button"]:  # if there is a button to click, click it
+            page.click(locator["button"])
+            time.sleep(1.1)  # wait for the element to appear
 
-    menu = driver.find_element(By.ID, "menu")  # find the element with the id of "menu"
-    scroll(driver, html, menu)  # scroll to the menu
-    save_screenshot(driver, save_path, res_name, " menu ")
-
-    menu_title = driver.find_element(By.ID, "menu-title")  # find the element with the id "menu-title"
-    scroll(driver, html, menu_title)  # scroll to the top of the menu
-    save_screenshot(driver, save_path, res_name, " menu title ")
-
-    welcome_center = driver.find_element(By.ID, "welcome-center")  # find the element with the id of "welcome-center"
-    scroll(driver, html, welcome_center)  # scroll to the welcome message
-    save_screenshot(driver, save_path, res_name, " welcome-center ")
-
-    bg_images = driver.find_elements(By.CLASS_NAME, "background")  # collect all elements with the class "background" in a list
-    for img in bg_images:  # iterate over the background images and take a screenshot of each
-        scroll(driver, html, img)  # scroll to the image
-        save_screenshot(driver, save_path, res_name, " img-" + img.get_attribute("id") + " ")
+        page.screenshot(path=outputFile)  # take a screenshot of the page and save it to the output file
+        browser.close()  # close the browser
 
 
-def get_current_date_and_time():  # function for getting the current date and time
-    return datetime.now(timezone.utc).strftime('%Y-%m-%d-%H.%M.%S.%f')[:-3]  # return the current date and time in a specific format
+# function for getting the current date and time
+def getCurrentDateAndTime() -> str:
+    nowUtc = datetime.now(timezone.utc)
+
+    # correct for timezone
+    offset = timedelta(hours=2)
+    offsetTime = nowUtc + offset
+
+    formattedTime = offsetTime.strftime("%Y-%m-%d-%H.%M.%S.%f")[:-3]
+
+    return formattedTime  # return the current date and time in a specific format
 
 
-def save_screenshot(driver, save_path, res_name, id):  # function for shortening the code for saving screenshots
-    print(f'Saving screenshot: {res_name}')
-    driver.save_screenshot(save_path + res_name + id + "UTC" + get_current_date_and_time() + ".png")
+def makeFileName(resIndex: int, locIndex: int, res: str, loc: str, currentDateAndTime: str) -> str:  # function for generating the filename aswell as a folder for the current batch of screenshots
+    return f"{resIndex}-{locIndex}-{res}-{loc}-{currentDateAndTime}.png"  # return the filename for the screenshot to be taken
 
 
-def scroll(driver, element, target):
-    if type(target) == str:
-        if target == "top":
-            element.send_keys(Keys.HOME)  # scroll to top
-
-        elif target == "bottom":
-            element.send_keys(Keys.END)  # scroll to bottom
-
-        time.sleep(0.2)  # sleep for .2 seconds so the browser has time to scroll before taking screenshot
-
-    elif type(target) == webdriver.remote.webelement.WebElement:  # if the target is an element, scroll to the element
-        actions = ActionChains(driver)
-        actions.move_to_element(target).perform()
+def runMultithreaded() -> None:
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        for resIndex, res in enumerate(resolutions):  # iterate over the resolutions and locators
+            for locIndex, loc in enumerate(locators):
+                folderName = dateAndTime  # folder for the current batch of screenshots
+                fileName = makeFileName(resIndex, locIndex, res, loc, dateAndTime)  # generate the filename for the screenshot to be taken
+                executor.submit(takeScreenshot, "index.html", f"{screenshotFolder}/{folderName}/{fileName}", resolutions[res], locators[loc])  # take a screenshot of the page
 
 
-initial_screenshot_gen()  # run the function to capture the screenshots
+if __name__ == "__main__":
+
+    dateAndTime = getCurrentDateAndTime()  # get the current date and time for file naming
+
+    if not path.isdir(screenshotFolder):  # create a folder for the screenshots if it doesn't exist
+        mkdir(screenshotFolder)
+
+    runMultithreaded()
