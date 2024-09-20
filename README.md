@@ -1,10 +1,18 @@
 ## About
-A website for a pizza restaurant named *Il Forno Magico*.
+A website for a pizza restaurant named [*Il Forno Magico*](https://ilfornomagico.ntig.dev/).
+
+Link to [nightly build](https://ntig-uppsala.github.io/TE4-JITS-Pizzeria/).
 
 ## Development environment
 * **OS:** Windows 11
 * **Browser:** Chrome v.127.0.6533.120
 * **Code editor:** Visual Studio Code (VS Code) v.1.93.0
+  * Extensions
+    * HTML CSS Support
+        * Id: ecmel.vscode-html-css
+        * Version: 2.0.10
+        * Publisher: ecmel
+        * VS Marketplace [Link](https://marketplace.visualstudio.com/items?itemName=ecmel.vscode-html-css)
 
 ### Languages
 * HTML5
@@ -27,7 +35,7 @@ To get started with our testing system, follow these instructions:
    * This is done since VS Code can be very flakey when it comes to recognizing the test files.
 
 
-## Connect to the hosting server
+## Connect to server
 Ip address, port and password can be found in this document, [Locked](https://docs.google.com/document/d/1MWLQmjovcKNbXPJKwjeO6dcWuTHolFhyG45ixu8kwDk/edit?usp=sharing).
 * `ssh root@<ip adress> -p <port>`
 * `yes` when prompted about connecting
@@ -54,3 +62,13 @@ If there is nothing in the folder you will have to clone the repository.
 ```
 git clone https://github.com/NTIG-Uppsala/TE4-JITS-Pizzeria.git .
 ```
+
+## Accessing the database 
+We use [SupaBase](https://supabase.com/) as our database. To access the database, follow these steps:
+1. Go to [SupaBase](https://supabase.com/).
+2. Log in.
+3. Open the invite-link sent to your email.
+   * make sure the email is the same as the one you used to log in. Supabase will complain otherwise.
+4. Click on the project *il-forno-magico*.
+5. On the nav-bar to the left you will see tab labeled *Database*.
+6. There you will see all the tables.
