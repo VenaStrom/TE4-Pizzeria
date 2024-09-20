@@ -43,12 +43,13 @@ Ip address, port and password can be found in this document, [Locked](https://do
 * `cd /var/www/html`
 
 
-## Publish to production
+## Deploy to production
 
-Connect to the server and navigate to `/var/www/html` and run the following commands:
-* `git fetch --all`
-* `git checkout tags/<tag>` \<tag>: the [desired releases](https://github.com/NTIG-Uppsala/TE4-JITS-Pizzeria/releases) tag e.g. `v1.0.0`.
-* `systemctl restart nginx` to make sure the changes take effect.
+Connect to the server and run the following command:
+```
+/usr/local/bin/deploy.sh <tagVersion>
+```
+\<tagVersion> corresponds to the desired [release tag](https://github.com/NTIG-Uppsala/TE4-JITS-Pizzeria/releases) e.g. `v1.0.0`.
 
 
 
@@ -58,9 +59,9 @@ If any problems occur, please check if nginx and git are installed correctly.
 apt install nginx git
 ```
 
-If there is nothing in the folder you will have to clone the repository.
+If there is nothing in the folder you will have to clone the repository first.
 ```
-git clone https://github.com/NTIG-Uppsala/TE4-JITS-Pizzeria.git .
+git clone https://github.com/NTIG-Uppsala/TE4-JITS-Pizzeria.git /var/www/html
 ```
 
 ## Accessing the database 
