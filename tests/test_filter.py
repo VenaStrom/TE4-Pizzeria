@@ -31,14 +31,17 @@ class TestFilter(TemplateTest):
         self.assertFalse(container.is_visible())
 
         button.click()
+        container.wait_for("visible", timeout=5000)
 
         # check if the container is visible
         self.assertTrue(container.is_visible())
 
         # close and reopen
         button.click()
+        container.wait_for("visible", timeout=5000)
         self.assertFalse(container.is_visible())
         button.click()
+        container.wait_for("visible", timeout=5000)
         self.assertTrue(container.is_visible())
 
     def testSearch(self) -> None:
