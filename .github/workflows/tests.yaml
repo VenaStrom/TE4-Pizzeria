@@ -1,0 +1,59 @@
+name: Automated Python Playwright Testing
+
+on:
+    push:
+        branches:
+            - "**"
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+
+        steps:
+            # Checkout code
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            # Set up Python
+            - name: Set up Python
+              uses: actions/setup-python@v2
+              with:
+                  python-version: "3.12.5"
+
+            # Install dependencies and Playwright
+            - name: Install dependencies
+              run: |
+                  python -m pip install --upgrade pip
+                  pip install lxml playwright
+                  playwright install
+
+            # Run tests using custom JSON test runner
+            - name: Run tests and output to JSON file
+              run: |
+                  mkdir -p test_results  # Create directory for test results
+                  python tests/runAll.py
+
+            # Upload test results as an artifact
+            - name: Upload test results
+              uses: actions/upload-artifact@v4
+              with:
+                  name: test-results
+                  path: test_results/test_output.json
+
+            # Fail the build if any tests failed or if no tests were run
+            - name: Check for test failures
+              run: |
+                  if [ -f test_results/test_output.json ]; then
+                      if grep -q '"outcome": "failure"' test_results/test_output.json; then
+                          echo "Tests failed"
+                          exit 1
+                      elif ! grep -q '"outcome"' test_results/test_output.json; then
+                          echo "No tests were run"
+                          exit 1
+                      else
+                          echo "Tests passed"
+                      fi
+                  else
+                      echo "No test results file found"
+                      exit 1
+                  fi
