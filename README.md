@@ -80,7 +80,7 @@ We use [SupaBase](https://supabase.com/) as our database. To access the database
 2. In the upper left corner click "schema" and select either Dev or Porduction.
 ### Using SQL
 1. In the dashboard on the leftside click SQL Editor.
-2. To view all the the tables in a specific schema run the following command (schema_name is should be either Dev or Production).
+2. To view all the the tables in a specific schema run the following command (schema_name should be either Dev or Production).
 ```
 SELECT table_name FROM information_schema.tables WHERE table_schema = 'schema_name';
 ```
