@@ -115,5 +115,5 @@ If you want to create a new schema or table that should be retrievable from the 
     GRANT SELECT ON "schema_name"."table_name" TO anon;
     ```
 
-## Fetching Data from the Database
+## How to setup env.js
 To fetch data from the database, you will need a `supabaseUrl` and a `publicKey`. These credentials should be placed in a JavaScript file. You can use `envExample.js` as a reference for the structure. The credentials can be found in the following document: [Locked](https://docs.google.com/document/d/1MWLQmjovcKNbXPJKwjeO6dcWuTHolFhyG45ixu8kwDk/edit?usp=sharing).
