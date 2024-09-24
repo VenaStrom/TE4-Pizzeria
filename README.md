@@ -30,7 +30,7 @@ To get started with our testing system, follow these instructions:
 2. Click on “Configure Python Tests”.
 3. Click on “unittest”.
 4. Click on “tests”.
-5. Click on “test*.py”.
+5. Click on “test_*.py”.
 6. Restart VS Code.
    * This is done since VS Code can be very flakey when it comes to recognizing the test files.
 
