@@ -30,7 +30,7 @@ To get started with our testing system, follow these instructions:
 2. Click on “Configure Python Tests”.
 3. Click on “unittest”.
 4. Click on “tests”.
-5. Click on “test*.py”.
+5. Click on “test_*.py”.
 6. Restart VS Code.
    * This is done since VS Code can be very flakey when it comes to recognizing the test files.
 
@@ -80,7 +80,7 @@ We use [SupaBase](https://supabase.com/) as our database. To access the database
 2. In the upper left corner click "schema" and select either Dev or Porduction.
 ### Using SQL
 1. In the dashboard on the leftside click SQL Editor.
-2. To view all the the tables in a specific schema run the following command (schema_name is should be either Dev or Production).
+2. To view all the the tables in a specific schema run the following command (schema_name should be either Dev or Production).
 ```
 SELECT table_name FROM information_schema.tables WHERE table_schema = 'schema_name';
 ```
@@ -118,5 +118,5 @@ If you want to create a new schema or table that should be retrievable from the 
 ## Creating a New Private Schema or Table
 Follow the steps outlined in "Creating a New Public Schema or Table" but use the "service_role" key instead of the "anon" key. This ensures that the data can only be retrieved using the secret key, not the public key.
 
-## Fetching Data from the Database
+## How to setup env.js
 To fetch data from the database, you will need a `supabaseUrl` and a `publicKey`. These credentials should be placed in a JavaScript file. You can use `envExample.js` as a reference for the structure. The credentials can be found in the following document: [Locked](https://docs.google.com/document/d/1MWLQmjovcKNbXPJKwjeO6dcWuTHolFhyG45ixu8kwDk/edit?usp=sharing).
