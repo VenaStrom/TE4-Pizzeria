@@ -116,4 +116,9 @@ If you want to create a new schema or table that should be retrievable from the 
     ```
 
 ## How to setup env.js
-To fetch data from the database, you will need a `supabaseUrl` and a `publicKey`. These credentials should be placed in a JavaScript file. You can use `envExample.js` as a reference for the structure. The credentials can be found in the following document: [Locked](https://docs.google.com/document/d/1MWLQmjovcKNbXPJKwjeO6dcWuTHolFhyG45ixu8kwDk/edit?usp=sharing).
+The reason to set up `env.js` is to access the development database that is used during development. To do this you will need: 
+* The url of the database e.g. `https://<your-projects-id>.supabase.co` that you get on the supabase website under `project settings -> API`. 
+* A `private key` that you get from the same page on supabase's site.
+* And the name of the `schema` you want to access.
+
+When you have those, it's time to copy the `envTemplate.js` file and rename it to `env.js`. Then you will need to fill in the `url`, `private key` and `schema` in the `env.js` file where it directs you to do so. Keep in mind that the `env.js` file is in the `.gitignore` file so it won't be and shouldn't be pushed to the repository.
