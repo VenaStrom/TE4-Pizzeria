@@ -89,7 +89,7 @@ SELECT table_name FROM information_schema.tables WHERE table_schema = 'schema_na
 SELECT * FROM "schema_name"."table_name";
 ```
 
-## Creating a New Schema or Table
+## Creating a new public schema or table
 If you want to create a new schema or table that should be retrievable from the client side, you'll need to create policies.
 
 ### Schema
@@ -114,6 +114,9 @@ If you want to create a new schema or table that should be retrievable from the 
     -- Note that this will grant select access on all the tables in "schema_name". To grant access to a single table instead, run:
     GRANT SELECT ON "schema_name"."table_name" TO anon;
     ```
+
+## Creating a New Private Schema or Table
+Follow the steps outlined in "Creating a New Public Schema or Table" but use the "service_role" key instead of the "anon" key. This ensures that the data can only be retrieved using the secret key, not the public key.
 
 ## Fetching Data from the Database
 To fetch data from the database, you will need a `supabaseUrl` and a `publicKey`. These credentials should be placed in a JavaScript file. You can use `envExample.js` as a reference for the structure. The credentials can be found in the following document: [Locked](https://docs.google.com/document/d/1MWLQmjovcKNbXPJKwjeO6dcWuTHolFhyG45ixu8kwDk/edit?usp=sharing).
