@@ -19,7 +19,7 @@
     <script defer src="scripts/filter.js"></script>
     <script defer src="scripts/setPriceSlider.js"></script>
     <script defer src="scripts/filterButton.js"></script>
-    <script src="scripts/quizList.js" defer></script>
+    <script src="scripts/quizList.js"></script>
     <script src="scripts/populateQuiz.js" defer></script>
 </head>
 
@@ -33,13 +33,6 @@
                 <p class="booking-info">Ring oss på <a class="opacity-75-hover" href="tel:0630-555-555"><strong>0630-555-555</strong></a> för att boka bord</p>
             </div>
         </div>
-            <div class="row container-fluid d-flex justify-content-center align-items-center flex-column">
-                    <div class="col-12 display-1 italianno mx-auto text-center">Pizza kompass</div>
-                    <div class="col-12 p-0 col-3 d-flex justify-content-center" id="quiz-container">
-                        <!-- This is where all the quiz questions are added via js -->
-                         
-                    </div>
-            </div>
         <div class="container-fluid d-flex justify-content-center">
             <div class="row col-10 col-lg-8 d-flex justify-content-center">
 
@@ -67,6 +60,8 @@
                         document.getElementById("menu").classList.remove("d-none");
                     </script>
                 </div>
+
+
                 <!-- noscript starts -->
                 <noscript>
                     <div class="container-fluid text-center display-1 fst-italic my-5 fs-3">
@@ -171,7 +166,12 @@
             </div>
         </div>
     </div>
-
+    <div class="row container-fluid d-flex justify-content-center align-items-center flex-column">
+        <div class="display-1 italianno mx-auto text-center">Pizza kompass</div>
+        <div class="container-fluid col-sm-6 fw-normal p-0" id="quiz-container">
+            <!-- This is where all the quiz questions are added via js -->
+        </div>
+    </div>
     <!-- Image carousel -->
     <div id="pizza-carousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner d-flex align-items-center mt-4 mb-5">

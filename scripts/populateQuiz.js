@@ -2,41 +2,33 @@ const populateQuiz = () => {
     let currentQuestionIndex = 0;
 
     const quizContainer = document.getElementById('quiz-container');
-    const prevButton = document.createElement('button');
-
-    prevButton.innerText = 'Previous';
-    prevButton.classList.add('btn', 'btn-secondary', 'mb-4');
-
-    prevButton.addEventListener('click', () => {
-        if (currentQuestionIndex > 0) {
-            currentQuestionIndex--;
-            displayQuestion();
-        }
-    });
+    
 
     function displayQuestion() {
         quizContainer.innerHTML = ''; // Clear previous content
 
         const quizItem = quizData[currentQuestionIndex];
         const questionDiv = document.createElement('div');
-        questionDiv.classList.add('mb-4', 'p-4', 'Montserrat', 'quiz-question');
+        questionDiv.classList.add('mt-3', 'Montserrat',);
         questionDiv.innerHTML = `
-            <div class="col-12">
-                <h3 class="pb-2">${quizItem.question}</h3>
+            <div class="">
+                <h5 class="pb-2 text-center" id="question">${quizItem.question}</h5>
                 <form class="quiz-form Montserrat">
                     ${quizItem.answers.map((answer, index) => `
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="answer" id="answer${index}" value="${answer}">
-                            <label class="form-check-label" for="answer${index}">
+                        <div class="form-check fst-italic d-flex justify-content-center">
+                            <input class="form-check-input" type="radio" name="answer" id="radioBox${index}" value="${answer}">
+                            <label class="form-check-label ms-3" id="answer${index}" for="radioBox${index}">
                                 ${answer}
                             </label>
                         </div>
                     `).join('')}
                 </form>
+                <button class="pt-2 btn custom-btn d-block mx-auto" id="quiz-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="custom-icon" viewBox="0 0 320 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M34.5 239L228.9 44.7c9.4-9.4 24.6-9.4 33.9 0l22.7 22.7c9.4 9.4 9.4 24.5 0 33.9L131.5 256l154 154.8c9.3 9.4 9.3 24.5 0 33.9l-22.7 22.7c-9.4 9.4-24.6 9.4-33.9 0L34.5 273c-9.4-9.4-9.4-24.6 0-33.9z"/>                    </svg>
+                </button>
             </div>`;
 
         quizContainer.appendChild(questionDiv);
-        quizContainer.appendChild(prevButton);
 
         const form = questionDiv.querySelector('.quiz-form');
         form.addEventListener('change', () => {
@@ -46,6 +38,13 @@ const populateQuiz = () => {
                     displayQuestion();
                 }
             }, 500); // 500 milliseconds delay
+        });
+        const button = questionDiv.querySelector('#quiz-button');
+        button.addEventListener('click', () => {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion();
+            }
         });
     }
 
