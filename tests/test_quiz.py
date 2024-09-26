@@ -54,11 +54,11 @@ class TestQuiz(TemplateTest):
         self.assertIn("Om du fick superkrafter för en dag, vad skulle du göra?", question.inner_text())
         for _ in range(3):
             radioBox1.click()
-            self.page.wait_for_timeout(500)
+            self.page.wait_for_timeout(1000)
         self.assertIn("Om du fick vara osynlig i en timme, vad skulle du göra?", question.inner_text())
         for _ in range(3):
             radioBox1.click()
-            self.page.wait_for_timeout(500)
+            self.page.wait_for_timeout(1000)
         self.assertIn("Om du fick en tidsmaskin, var skulle du resa?", question.inner_text())
 
     def testQuizAnswers(self) -> None:
@@ -70,13 +70,13 @@ class TestQuiz(TemplateTest):
 
         for _ in range(3):
             radioBox1.click()
-            self.page.wait_for_timeout(500)
+            self.page.wait_for_timeout(1000)
         self.assertIn("Tjuvlyssna på hemliga samtal och sen ta en tupplur", firstAnswer.inner_text())
         self.assertIn("Göra massor av spratt på folk och sedan springa iväg skrattandes", lastAnswer.inner_text())
 
         for _ in range(3):
             radioBox1.click()
-            self.page.wait_for_timeout(500)
+            self.page.wait_for_timeout(1000)
         self.assertIn("Till en lugn plats i historien där jag bara kan njuta av dagen", firstAnswer.inner_text())
         self.assertIn("Till en tropisk ö för att leva det perfekta semesterlivet", lastAnswer.inner_text())
 
