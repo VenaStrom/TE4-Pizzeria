@@ -102,6 +102,47 @@ a {
 
 }
 
+/*Custom css for the price slider*/
+
+.noUi-base {
+    background: rgb(173, 173, 173);
+}
+
+#price-range {
+    height: 10px;
+}
+
+#price-range .noUi-connect {
+    background: #ffffff;
+}
+
+#price-range .noUi-handle {
+    height: 18px;
+    width: 18px;
+    top: -5px;
+    right: -9px; /* half the width */
+    border-radius: 9px;
+}
+
+.noUi-touch-area {
+    padding: 2.5vh;
+    position: absolute;
+    top:0.5vh;
+    transform: translate(-50%, -50%);
+}
+
+/* Hide the pseudo-elements that create the lines inside the handle */
+.noUi-handle:before,
+.noUi-handle:after {
+    display: none;
+}
+
+.noUi-tooltip {
+    display: none;
+    color: black;
+    font-weight: bolder;
+}
+
 /*Overwrites the bootstrap css starts here*/
 .form-check-input:focus {
     border-color: #000000;
@@ -128,11 +169,6 @@ a {
 }
 
 /*Overwrites the bootstrap css end here*/
-
-/*Custom css to change the color of the price slider*/
-.accent {
-    accent-color: rgb(255, 255, 255);
-}
 
 /*Pseudo elements for custom borders*/
 .custom-left-border,
