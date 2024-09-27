@@ -156,7 +156,7 @@ If you want to create a new schema that should only be retrievable using the sec
 ## Create tables in schema
 To get an overview of the structure of the database, see this image: [Database Structure](https://github.com/user-attachments/assets/caaa49e9-4b96-4cda-853a-207e645035f4). We have three schemas: Dev, Production and Testing. Each schema shares the same structure but contains different data.
 
-To create all the tables with the correct structures in Supabase, copy and paste the SQL code below into an empty schema in the SQL editor. Remember to replace `[schema_name]` with the actual name of your schema. Note that the tables will be created empty.
+To create all the tables with the correct structures in Supabase, copy and paste the SQL code below into the SQL editor within an empty schema. Replace `[schema_name]` with the actual name of your schema. Note that the tables will be created empty.
 ```sql
 CREATE TABLE "[schema_name]"."Pizza-special-options" (
     "pizzaID" SERIAL NOT NULL, 
