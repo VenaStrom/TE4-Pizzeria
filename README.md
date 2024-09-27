@@ -85,7 +85,7 @@ When you have those, it's time to copy the `envTemplate.js` file and rename it t
 ## Accessing the schemas and tables
 ### Using the Table Editor
 1. In the dashboard on the left side click `Table Editor`.
-2. In the upper left corner click `schema` and select either `Dev` or `Production`.
+2. In the upper left corner click `schema` and select either `Dev`, `Production` or `Testing`.
 ### Using SQL
 1. In the dashboard on the left side click `SQL Editor`.
 2. To view all the the tables in a specific schema, run the following command but replace`[schema_name]` with the actual name of your schema.
@@ -154,7 +154,7 @@ If you want to create a new schema that should only be retrievable using the sec
     ```
 
 ## Create tables in schema
-To get an overview of the structure of the database, see this image: [Database Structure](https://github.com/user-attachments/assets/caaa49e9-4b96-4cda-853a-207e645035f4).
+To get an overview of the structure of the database, see this image: [Database Structure](https://github.com/user-attachments/assets/caaa49e9-4b96-4cda-853a-207e645035f4). We have three schemas: Dev, Production and Testing. Each schema shares the same structure but contains different data.
 
 To create all the tables with the correct structures in Supabase, copy and paste the SQL code below into an empty schema in the SQL editor. Remember to replace `[schema_name]` with the actual name of your schema. Note that the tables will be created empty.
 ```sql
