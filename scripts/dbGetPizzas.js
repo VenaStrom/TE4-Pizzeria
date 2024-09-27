@@ -12,7 +12,7 @@ const fetchTableData = async () => {
     // If the fetch has been attempted 3 times, through an error
     fetchAttempts++;
     if (fetchAttempts > 3) {
-        
+        console.warn("Fetch canceled after 3 attempts");        
         return;
     };
 

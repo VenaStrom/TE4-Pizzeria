@@ -61,7 +61,7 @@
                     <!-- Menu header -->
                     <div class="container-fluid d-flex justify-content-between">
                         <div id="menu-title" class="display-1 italianno mx-auto">Meny</div>
-                        
+
                         <!-- Open filter menu button -->
                         <button id="filter-button" class="btn custom-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" class="custom-icon" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -70,6 +70,7 @@
                         </button>
                     </div>
 
+                    <!-- The actual menu where the pizzas are -->
                     <div id="menu-items-container" class="overflow-y-scroll p-0 container-fluid position-relative d-grid">
                         <!-- This is where all the pizzas are added via js -->
                     </div>
@@ -126,7 +127,7 @@
                                 <div id="price-range"></div>
                                 <p class="mt-1 d-flex justify-content-center" id="price-interval"></p>
                             </div>
-                        </div>    
+                        </div>
                     </div>
                 </div>
             </div>
@@ -134,13 +135,18 @@
     </div>
 
     <!-- Quiz -->
-    <div class="row container-fluid d-flex justify-content-center align-items-center flex-column">
+    <div class="row container-fluid d-flex justify-content-center align-items-center flex-column d-none">
         <div class="display-1 italianno mx-auto text-center">Pizza kompass</div>
         <div class="container-fluid col-sm-6 fw-normal p-0" id="quiz-container">
             <!-- This is where all the quiz questions are added via js -->
         </div>
+
+        <!-- Unhides the quiz when JS is enabled -->
+        <script>
+            document.getElementById("quiz-container").classList.remove("d-none");
+        </script>
     </div>
-    
+
     <!-- Image carousel -->
     <div id="pizza-carousel" class="carousel slide d-none" data-bs-ride="carousel">
         <div class="carousel-inner d-flex align-items-center mt-4 mb-5">
