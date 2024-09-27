@@ -31,7 +31,7 @@ const updateFilters = async () => {
             }
             document.querySelector("#extra-toppings").classList.add("d-none");
         } else {
-            menuContainer.querySelector("no-matches")?.remove();
+            menuContainer.querySelector("#no-matches")?.remove();
             document.getElementById("extra-toppings").classList.remove("d-none");
         }
     };

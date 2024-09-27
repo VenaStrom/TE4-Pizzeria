@@ -5,9 +5,17 @@ const supabase = createClient(dbConnectInfo.url, dbConnectInfo.key, {
 
 // Don't directly interact with this array outside of this file
 let globalDbPizzas = [];
+let fetchAttempts = 0;
 
 // Call this function and wait for the array
 const fetchTableData = async () => {
+    // If the fetch has been attempted 3 times, through an error
+    fetchAttempts++;
+    if (fetchAttempts > 3) {
+        
+        return;
+    };
+
 
     // If the pizzas have already been fetched, return them
     if (globalDbPizzas.length > 0) {
