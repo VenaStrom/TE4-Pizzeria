@@ -21,7 +21,7 @@ class TestName(TemplateTest):
         self.doesPageExist()
         self.doesNameExist()
  
-    # new test function goes here
+    # new test functions goes here
 
 
 if __name__ == "__main__":

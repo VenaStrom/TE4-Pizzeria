@@ -30,7 +30,7 @@ To get started with our testing system, follow these instructions:
 2. Click on “Configure Python Tests”.
 3. Click on “unittest”.
 4. Click on “tests”.
-5. Click on “test*.py”.
+5. Click on “test_*.py”.
 6. Restart VS Code.
    * This is done since VS Code can be very flakey when it comes to recognizing the test files.
 
@@ -89,7 +89,7 @@ SELECT table_name FROM information_schema.tables WHERE table_schema = 'schema_na
 SELECT * FROM "schema_name"."table_name";
 ```
 
-## Creating a New Schema or Table
+## Creating a new public schema or table
 If you want to create a new schema or table that should be retrievable from the client side, you'll need to create policies.
 
 ### Schema
@@ -115,5 +115,13 @@ If you want to create a new schema or table that should be retrievable from the 
     GRANT SELECT ON "schema_name"."table_name" TO anon;
     ```
 
+## Creating a New Private Schema or Table
+Follow the steps outlined in "Creating a New Public Schema or Table" but use the "service_role" key instead of the "anon" key. This ensures that the data can only be retrieved using the secret key, not the public key.
+
 ## How to setup env.js
-To fetch data from the database, you will need a `supabaseUrl` and a `publicKey`. These credentials should be placed in a JavaScript file. You can use `envExample.js` as a reference for the structure. The credentials can be found in the following document: [Locked](https://docs.google.com/document/d/1MWLQmjovcKNbXPJKwjeO6dcWuTHolFhyG45ixu8kwDk/edit?usp=sharing).
+The reason to set up `env.js` is to access the development database that is used during development. To do this you will need: 
+* The url of the database e.g. `https://<your-projects-id>.supabase.co` that you get on the supabase website under `project settings -> API`. 
+* A `private key` that you get from the same page on supabase's site.
+* And the name of the `schema` you want to access.
+
+When you have those, it's time to copy the `envTemplate.js` file and rename it to `env.js`. Then you will need to fill in the `url`, `private key` and `schema` in the `env.js` file where it directs you to do so. Keep in mind that the `env.js` file is in the `.gitignore` file so it won't be and shouldn't be pushed to the repository.

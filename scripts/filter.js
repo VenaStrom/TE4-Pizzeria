@@ -1,93 +1,75 @@
 
+// Adjust the threshold to change how strict the search is when it comes to partial matches
 const percentMatchThreshold = 0.3;
 
-
-const updateFilters = () => {
+const updateFilters = async () => {
+    const pizzas = await getPizzas();
 
     const updateOrder = (filteredPizzas) => {
         // Hide all pizzas
         pizzas.forEach((pizza) => {
             const menuItemDOM = document.querySelector(".pizza#" + pizza.id);
-            menuItemDOM.classList.add("d-none");
+            if (menuItemDOM) {
+                menuItemDOM.classList.add("d-none");
+            };
         });
 
         // Show the pizzas that are in the filtered list
         filteredPizzas.forEach((pizza, index) => {
             const menuItemDOM = document.querySelector(".pizza#" + pizza.id);
-            menuItemDOM.classList.remove("d-none");
-            menuItemDOM.style.order = index;
+            if (menuItemDOM) {
+                menuItemDOM.classList.remove("d-none");
+                menuItemDOM.style.order = index;
+            };
         });
 
-        // If no pizzas are found, show a message
+        // If no pizzas are found, show a "no pizzas found" message
+        const menuContainer = document.getElementById("menu-items-container");
         if (filteredPizzas.length === 0) {
-            const menuContainer = document.getElementById("menu-items-container");
             if (!menuContainer.querySelector("#no-matches")) {
                 menuContainer.innerHTML += "<div class='fs-2 text-center' id='no-matches'>Inga pizzor matchar din sökning</div>";
-            };
-
-            document.getElementById("extra-toppings").classList.add("d-none");
-
+            }
+            document.querySelector("#extra-toppings").classList.add("d-none");
         } else {
-            const menuContainer = document.getElementById("menu-items-container");
-            // Question mark is used to check if the element exists before removing it
-            menuContainer.querySelector("#no-matches")?.remove();
-
+            menuContainer.querySelector("no-matches")?.remove();
             document.getElementById("extra-toppings").classList.remove("d-none");
-        };
+        }
     };
 
     const filterCheckboxes = (pizzas) => {
-        const exclusiveFiltersCheckboxes = document.querySelectorAll("#filter-container input[type='checkbox'].exclusive-filter");
-        const inclusiveFiltersCheckboxes = document.querySelectorAll("#filter-container input[type='checkbox'].inclusive-filter");
+        const ingredientsCheckboxes = document.querySelectorAll("#filter-container input[type='checkbox'].exclusive-filter");
+        const specialOptionsCheckboxes = document.querySelectorAll("#filter-container input[type='checkbox'].inclusive-filter");
 
-        // Makes arrays of objects with the id and checked status of the checkboxes and what string to filter for
-        const exclusiveFilters = Array.from(exclusiveFiltersCheckboxes)
-            .map((checkbox) => {
-                const id = checkbox.id;
-                const checked = checkbox.checked;
+        // Makes objects out of all the checkboxes, and filters out the ones that aren't in effect
+        const ingredientsFilters = Array.from(ingredientsCheckboxes).map((checkbox) => ({
+            id: checkbox.id,
+            checked: checkbox.checked
+        })).filter((checkbox) => !checkbox.checked);
 
-                return { id, checked };
-            });
-        const inclusiveFilters = Array.from(inclusiveFiltersCheckboxes)
-            .map((checkbox) => {
-                const id = checkbox.id;
-                const checked = checkbox.checked;
+        const specialOptionsFilters = Array.from(specialOptionsCheckboxes).map((checkbox) => ({
+            id: checkbox.id,
+            checked: checkbox.checked
+        })).filter((checkbox) => checkbox.checked);
 
-                return { id, checked };
-            });
+        // If no filters are active, return the original list
+        if (ingredientsFilters.length === 0 && specialOptionsFilters.length === 0) { return pizzas };
 
-        const uncheckedExclusiveFilters = exclusiveFilters.filter((checkbox) => !checkbox.checked);
-        const checkedInclusiveFilters = inclusiveFilters.filter((checkbox) => checkbox.checked);
-
-        // If all the filters are untouched, return the entire array
-        if (uncheckedExclusiveFilters.length === 0 && checkedInclusiveFilters.length === 0) { return pizzas; }
-
-        // Filters the pizzas based on the exclusive checkboxes
+        // Filters out the pizzas that don't match the ingredient filters
         let filteredPizzas = pizzas.filter((pizza) => {
-            if (uncheckedExclusiveFilters.length === 0) { return true; }
+            // Include the pizza if no ingredients are checked
+            if (ingredientsFilters.length === 0) { return true };
 
-            const pizzaIngredients = pizza.ingredientIDs
-
-            for (let index = 0; index < uncheckedExclusiveFilters.length; index++) {
-                if (pizzaIngredients.includes(uncheckedExclusiveFilters[index].id)) {
-                    return false;
-                };
-            };
-            return true;
+            // This long statement put simply, checks if pizza's ingredients are allowed
+            return !ingredientsFilters.some((filter) => pizza.ingredients.includes(filter.id));
         });
 
-        // Filters the pizzas based on the inclusive checkboxes
+        // Filters out the pizzas that don't match the special options filters
         filteredPizzas = filteredPizzas.filter((pizza) => {
-            if (checkedInclusiveFilters.length === 0) { return true; }
+            // Include the pizza if no special options are checked
+            if (specialOptionsFilters.length === 0) { return true };
 
-            const checks = [];
-
-            for (let index = 0; index < checkedInclusiveFilters.length; index++) {
-                const allowedPizzas = specialOptions[checkedInclusiveFilters[index].id];
-                checks.push(allowedPizzas.includes(pizza.id));
-            };
-
-            return checks.every(Boolean);
+            // This long statement put simply, checks if the pizza complies with all the special options
+            return specialOptionsFilters.every((filter) => pizza.specialOptions.includes(filter.id));
         });
 
         return filteredPizzas;
@@ -95,75 +77,77 @@ const updateFilters = () => {
 
     const filterSearch = (pizzas) => {
         const searchBox = document.getElementById("search-box");
-        const search = searchBox.value.toLowerCase().replace(" ", "");
+        const searchString = searchBox.value.toLowerCase().replace(" ", "");
 
-        // Return the entire array in case the search is empty
-        if (search.length === 0) { return pizzas; }
+        // If the search string is empty, return the original list since there's nothing to filter
+        if (searchString.length === 0) { return pizzas };
 
-        // Gets exact string matches and cases where there is no match
+        // Get all the pizzas that have an exact string match within their name or ingredients
         const exactMatches = pizzas.filter((item) => {
             const name = item.name.toLowerCase().replace(" ", "");
             const ingredients = item.ingredients.join(" ").toLowerCase();
 
-            return name.includes(search) || ingredients.includes(search);
+            return name.includes(searchString) || ingredients.includes(searchString);
         });
+
+        // The opposite check of the above, to get all the pizzas that don't have an exact match to filter further later
         const nonExactMatches = pizzas.filter((item) => {
             const name = item.name.toLowerCase().replace(" ", "");
             const ingredients = item.ingredients.join(" ").toLowerCase();
 
-            return !name.includes(search) && !ingredients.includes(search);
+            return !name.includes(searchString) && !ingredients.includes(searchString);
         });
 
-        // Gets partial matches based of a percentage of letter matches
-        const partialMatches = nonExactMatches.map(item => {
+        // Gets the remaining pizzas that have a partial match, and sorts them by how many letters match
+        const partialMatches = nonExactMatches.map((item) => {
             const name = item.name.toLowerCase();
-            const letters = search.split("");
+            const ingredients = item.ingredients.join(" ").toLowerCase();
+            // Splits the search string into an array of letters
+            const letters = searchString.split("");
 
-            let matches = 0;
-            for (let i = 0; i < letters.length; i++) {
-                if (name.includes(letters[i])) {
-                    matches++;
-                }
-            }
-            const percent = matches / name.length;
+            // Counts how many of the searched letters are in the pizza's name and ingredients
+            const matches = letters.filter((letter) => {
+                return (
+                    name.includes(letter)
+                    ||
+                    ingredients.includes(letter)
+                )
+            }).length;
 
-            item.percentMatch = percent;
-
+            // Calculates the percent match and save it to each pizza
+            item.percentMatch = matches / name.length;
             return item;
+        }).filter((item) => item.percentMatch > percentMatchThreshold); // Filters out the pizzas that don't match the threshold i.e. too few letters match
 
-            // if the percent match is greater than a percent value it can be shown. Please tweak as necessary
-        }).filter(program => program.percentMatch > percentMatchThreshold);
-
-        const returnList = [
-            ...exactMatches,
-            ...partialMatches.sort((a, b) => b.percentMatch - a.percentMatch)
-        ]
+        // The returned list is a patched together list of exact matches and partial matches, sorted by percent match
+        const returnList = [...exactMatches, ...partialMatches.sort((a, b) => b.percentMatch - a.percentMatch)];
 
         return returnList;
     };
 
     const filterPrice = (pizzas) => {
-        const slider = document.getElementById("price-range");
+        const priceSlider = document.getElementById("price-range");
+        const priceIntervalText = document.getElementById("price-interval");
+        const values = priceSlider.noUiSlider.get();
+        const lowerValue = Math.round(values[0]);
+        const upperValue = Math.round(values[1]);
+
+        // Update the text to show the current price interval
+        priceIntervalText.innerHTML = `Visar pizzor med pris mellan &nbsp;<strong>${lowerValue}kr</strong> &nbsp;och &nbsp;<strong>${upperValue}kr</strong>`;
 
         const filteredPizzas = pizzas.filter((pizza) => {
-            return parseFloat(pizza.price) <= parseFloat(slider.valueAsNumber);
+            const pizzaPrice = parseFloat(pizza.price);
+            return pizzaPrice <= upperValue && pizzaPrice >= lowerValue;
         });
-
+        
         return filteredPizzas;
     };
 
+    // Takes the pizzas trough all the filters and updates the order accordingly
     let filteredPizzas = pizzas;
-
-    // Filter by checkboxes first for performance reasons
     filteredPizzas = filterCheckboxes(filteredPizzas);
     filteredPizzas = filterPrice(filteredPizzas);
     filteredPizzas = filterSearch(filteredPizzas);
 
     updateOrder(filteredPizzas);
 };
-
-document.querySelector("#search-box").addEventListener("input", updateFilters);
-document.querySelector("#price-range").addEventListener("input", updateFilters);
-document.querySelector("#price-range").addEventListener("change", updateFilters);
-document.querySelector("#filter-container:not(#search-box)").addEventListener("change", updateFilters);
-document.addEventListener("DOMContentLoaded", updateFilters);
