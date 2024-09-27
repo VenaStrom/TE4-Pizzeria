@@ -31,7 +31,7 @@ const updateFilters = async () => {
             }
             document.querySelector("#extra-toppings").classList.add("d-none");
         } else {
-            menuContainer.querySelector("no-matches")?.remove();
+            menuContainer.querySelector("#no-matches")?.remove();
             document.getElementById("extra-toppings").classList.remove("d-none");
         }
     };
@@ -133,7 +133,7 @@ const updateFilters = async () => {
         const upperValue = Math.round(values[1]);
 
         // Update the text to show the current price interval
-        priceIntervalText.innerHTML = `Visar pizzor med pris mellan &nbsp;<strong>${lowerValue}kr</strong> &nbsp;och &nbsp;<strong>${upperValue}kr</strong>`;
+        priceIntervalText.innerHTML = `${lowerValue} kr till ${upperValue} kr`;
 
         const filteredPizzas = pizzas.filter((pizza) => {
             const pizzaPrice = parseFloat(pizza.price);

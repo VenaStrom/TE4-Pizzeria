@@ -127,5 +127,32 @@ class TestFilter(TemplateTest):
         self.page.evaluate("updateFilters()")
         self.assertIn('Inga pizzor matchar din sökning', menu.all_inner_texts()[0])
 
+    def testNoResult(self) -> None:
+        button = self.page.locator("#filter-button")
+        container = self.page.locator("#filter-container")
+
+        if not container.is_visible():
+            button.click()
+            self.page.wait_for_timeout(1100)
+        
+        menu = self.page.locator("#menu-items-container")
+        veggie = self.page.locator("#filter-container #Vegetarisk")
+        calzone = self.page.locator("#filter-container #Inbakad")
+
+        # This should not give any results
+        veggie.click()
+        calzone.click()
+
+        # Check if it says that there are no results
+        self.assertIn('Inga pizzor matchar din sökning', menu.all_inner_texts()[0])
+
+        # Uncheck the veggie filter, this should show the margarita pizza
+        calzone.click()
+
+        self.assertNotIn('Inga pizzor matchar din sökning', menu.all_inner_texts()[0])
+
+        self.assertIn("Margarita", menu.all_inner_texts()[0])
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

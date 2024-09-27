@@ -28,7 +28,7 @@
     <script defer src="scripts/openFilters.js"></script>
     <script defer src="scripts/quizList.js"></script>
     <script defer src="scripts/populateQuiz.js"></script>
-    
+
     <!-- db connection credentials. dbConnectionInfo is public but the env.js is created by you if you need to connect differently -->
     <script defer src="dbConnectionInfo.js"></script>
     <script defer src="env.js"></script> <!-- See envTemplate.js -->
@@ -40,7 +40,6 @@
     <script defer src="scripts/populateMenu.js"></script>
     <script defer src="scripts/filter.js"></script>
     <script defer src="scripts/populateFilter.js"></script>
-
 </head>
 
 <body>
@@ -117,7 +116,7 @@
                     <div class="container-fluid p-0">
                         <h1 class="italianno mt-4">Pris</h1>
                         <div class="container-fluid d-flex flex-row justify-content-start">
-                            <div class="col-xxl-8 p-0 m-0">
+                            <div class="col-xxl-8 col-12 p-0 m-0">
                                 <div id="price-range"></div>
                                 <p class="mt-1 d-flex justify-content-center" id="price-interval"></p>
                             </div>
@@ -127,12 +126,15 @@
             </div>
         </div>
     </div>
+
+    <!-- Quiz -->
     <div class="row container-fluid d-flex justify-content-center align-items-center flex-column">
         <div class="display-1 italianno mx-auto text-center">Pizza kompass</div>
         <div class="container-fluid col-sm-6 fw-normal p-0" id="quiz-container">
             <!-- This is where all the quiz questions are added via js -->
         </div>
     </div>
+    
     <!-- Image carousel -->
     <div id="pizza-carousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner d-flex align-items-center mt-4 mb-5">
