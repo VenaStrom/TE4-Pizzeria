@@ -115,7 +115,9 @@ If you want to create a new schema that should be retrievable from the client si
 
 6. A number of options will show on the right side of the screen. Select the desired policy, e.g select access, and click `save` (Alternatively, you can write your own SQL if your desired policy is not present).
 
-7. If the connection is still denied by the client side, you'll have to run some SQL commands. In the SQL Editor, run the following commands and replace `[schema_name]` with the actual name of your schema:
+7. In the dashboard on the left side click `Project settings` -> `API`, scroll down to `Data API Settings` and add your schema to the exposed schemas.
+
+8. If the connection is still denied by the client side, you'll have to run some SQL commands. In the SQL Editor, run the following commands and replace `[schema_name]` with the actual name of your schema:
     ```sql
     GRANT USAGE ON SCHEMA "[schema_name]" TO anon;
     GRANT SELECT ON ALL TABLES IN SCHEMA "[schema_name]" TO anon;
@@ -141,7 +143,9 @@ If you want to create a new schema that should only be retrievable using the sec
 
 6. A number of options will show on the right side of the screen. Select the desired policy, e.g select access, and click `save` (Alternatively, you can write your own SQL if your desired policy is not present).
 
-7. If the connection is still denied by the client side, you'll have to run some SQL commands. In the SQL Editor, run the following commands and replace `[schema_name]` with the actual name of your schema:
+7. In the dashboard on the left side click `Project settings` -> `API`, scroll down to `Data API Settings` and add your schema to the `exposed schemas`.
+
+8. If the connection is still denied by the client side, you'll have to run some SQL commands. In the SQL Editor, run the following commands and replace `[schema_name]` with the actual name of your schema:
     ```sql
     GRANT USAGE ON SCHEMA "[schema_name]" TO service_role;
     GRANT SELECT ON ALL TABLES IN SCHEMA "[schema_name]" TO service_role;
@@ -186,16 +190,15 @@ CREATE TABLE "[schema_name]"."Ingredients" (
 );
 
 ALTER TABLE "[schema_name]"."Pizzas-ingredients" 
-    ADD CONSTRAINT "pizzas_ingredients_ingredientsid_foreign" FOREIGN KEY ("ingredientsID") REFERENCES "Ingredients" ("ingredientsID");
+    ADD CONSTRAINT "pizzas_ingredients_ingredientsid_foreign" FOREIGN KEY ("ingredientsID") REFERENCES "[schema_name]"."Ingredients" ("ingredientsID");
 
 ALTER TABLE "[schema_name]"."Pizzas-ingredients" 
-    ADD CONSTRAINT "pizzas_ingredients_pizzaid_foreign" FOREIGN KEY ("pizzaID") REFERENCES "Pizzas" ("pizzaID");
+    ADD CONSTRAINT "pizzas_ingredients_pizzaid_foreign" FOREIGN KEY ("pizzaID") REFERENCES "[schema_name]"."Pizzas" ("pizzaID");
 
 ALTER TABLE "[schema_name]"."Pizza-special-options" 
-    ADD CONSTRAINT "pizza_special_options_specialid_foreign" FOREIGN KEY ("specialID") REFERENCES "Special-options" ("specialID");
+    ADD CONSTRAINT "pizza_special_options_specialid_foreign" FOREIGN KEY ("specialID") REFERENCES "[schema_name]"."Special-options" ("specialID");
 
 ALTER TABLE "[schema_name]"."Pizza-special-options" 
-    ADD CONSTRAINT "pizza_special_options_pizzaid_foreign" FOREIGN KEY ("pizzaID") REFERENCES "Pizzas" ("pizzaID");
-
+    ADD CONSTRAINT "pizza_special_options_pizzaid_foreign" FOREIGN KEY ("pizzaID") REFERENCES "[schema_name]"."Pizzas" ("pizzaID");
 ```
 
