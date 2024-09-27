@@ -154,48 +154,48 @@ To get an overview of the structure of the database, see this image: [Database S
 
 To create all the tables with the correct structures in Supabase, copy and paste the SQL code below into an empty schema in the SQL editor. Remember to replace `[schema_name]` with the actual name of your schema. Note that the tables will be created empty.
 ```sql
-    CREATE TABLE "[schema_name]"."Pizza-special-options" (
-        "pizzaID" SMALLINT NOT NULL,
-        "specialID" SMALLINT NOT NULL,
-        PRIMARY KEY ("pizzaID", "specialID") 
-    );
+CREATE TABLE "[schema_name]"."Pizza-special-options" (
+    "pizzaID" SERIAL NOT NULL, 
+    "specialID" SERIAL NOT NULL,
+    PRIMARY KEY ("pizzaID", "specialID")
+);
 
-    CREATE TABLE "[schema_name]"."Special-options" (
-        "specialID" SMALLINT NOT NULL,
-        "name" TEXT NOT NULL,
-        PRIMARY KEY ("specialID") 
-    );
+CREATE TABLE "[schema_name]"."Special-options" (
+    "specialID" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
+    PRIMARY KEY ("specialID")
+);
 
-    CREATE TABLE "[schema_name]"."Pizzas-ingredients" (
-        "pizzaID" SMALLINT NOT NULL,
-        "ingredientsID" SMALLINT NOT NULL,
-        PRIMARY KEY ("pizzaID", "ingredientsID")
-    );
+CREATE TABLE "[schema_name]"."Pizzas-ingredients" (
+    "pizzaID" SERIAL NOT NULL,
+    "ingredientsID" SERIAL NOT NULL, 
+    PRIMARY KEY ("pizzaID", "ingredientsID")
+);
 
-    CREATE TABLE "[schema_name]"."Pizzas" (
-        "pizzaID" SMALLINT NOT NULL,
-        "name" TEXT NOT NULL,
-        "price" SMALLINT NOT NULL,
-        PRIMARY KEY ("pizzaID")
-    );
+CREATE TABLE "[schema_name]"."Pizzas" (
+    "pizzaID" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
+    "price" SMALLINT NOT NULL,
+    PRIMARY KEY ("pizzaID")
+);
 
-    CREATE TABLE "[schema_name]"."Ingredients" (
-        "ingredientsID" SMALLINT NOT NULL,
-        "name" TEXT NOT NULL,
-        PRIMARY KEY ("ingredientsID")
-    );
+CREATE TABLE "[schema_name]"."Ingredients" (
+    "ingredientsID" SERIAL NOT NULL, 
+    "name" TEXT NOT NULL,
+    PRIMARY KEY ("ingredientsID")
+);
 
-    ALTER TABLE "[schema_name]"."Pizzas-ingredients" 
-        ADD CONSTRAINT "pizzas_ingredients_ingredientsid_foreign" FOREIGN KEY ("ingredientsID") REFERENCES "Ingredients" ("ingredientsID");
+ALTER TABLE "[schema_name]"."Pizzas-ingredients" 
+    ADD CONSTRAINT "pizzas_ingredients_ingredientsid_foreign" FOREIGN KEY ("ingredientsID") REFERENCES "Ingredients" ("ingredientsID");
 
-    ALTER TABLE "[schema_name]"."Pizzas-ingredients" 
-        ADD CONSTRAINT "pizzas_ingredients_pizzaid_foreign" FOREIGN KEY ("pizzaID") REFERENCES "Pizzas" ("pizzaID");
+ALTER TABLE "[schema_name]"."Pizzas-ingredients" 
+    ADD CONSTRAINT "pizzas_ingredients_pizzaid_foreign" FOREIGN KEY ("pizzaID") REFERENCES "Pizzas" ("pizzaID");
 
-    ALTER TABLE "[schema_name]"."Pizza-special-options" 
-        ADD CONSTRAINT "pizza_special_options_specialid_foreign" FOREIGN KEY ("specialID") REFERENCES "Special-options" ("specialID");
+ALTER TABLE "[schema_name]"."Pizza-special-options" 
+    ADD CONSTRAINT "pizza_special_options_specialid_foreign" FOREIGN KEY ("specialID") REFERENCES "Special-options" ("specialID");
 
-    ALTER TABLE "[schema_name]"."Pizza-special-options" 
-        ADD CONSTRAINT "pizza_special_options_pizzaid_foreign" FOREIGN KEY ("pizzaID") REFERENCES "Pizzas" ("pizzaID");
+ALTER TABLE "[schema_name]"."Pizza-special-options" 
+    ADD CONSTRAINT "pizza_special_options_pizzaid_foreign" FOREIGN KEY ("pizzaID") REFERENCES "Pizzas" ("pizzaID");
 
 ```
 
