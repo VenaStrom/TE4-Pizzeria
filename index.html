@@ -57,8 +57,12 @@
 
                 <!-- Menu container -->
                 <div id="menu" class="bg-body order-2 order-sm-1 col-12 col-sm-6 d-flex flex-column align-items-center z-1 custom-left-border custom-right-border d-none">
+
+                    <!-- Menu header -->
                     <div class="container-fluid d-flex justify-content-between">
                         <div id="menu-title" class="display-1 italianno mx-auto">Meny</div>
+                        
+                        <!-- Open filter menu button -->
                         <button id="filter-button" class="btn custom-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" class="custom-icon" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                                 <path fill="#ffffff" d="M3.9 54.9C10.5 40.9 24.5 32 40 32l432 0c15.5 0 29.5 8.9 36.1 22.9s4.6 30.5-5.2 42.5L320 320.9 320 448c0 12.1-6.8 23.2-17.7 28.6s-23.8 4.3-33.5-3l-64-48c-8.1-6-12.8-15.5-12.8-25.6l0-79.1L9 97.3C-.7 85.4-2.8 68.8 3.9 54.9z" />
@@ -75,12 +79,14 @@
                         <div class="fs-1 italianno">Extra topping</div>
                         <div class="fs-5 fst-italic">5 kr</div>
                     </div>
+
+                    <!-- Unhides menu when JS is enabled -->
                     <script>
                         document.getElementById("menu").classList.remove("d-none");
                     </script>
                 </div>
 
-                <!-- noscript starts -->
+                <!-- Noscript telling people to call instead -->
                 <noscript>
                     <div class="container-fluid text-center display-1 fst-italic my-5 fs-3">
                         Tyvärr är vår meny för närvarande inte tillgänglig. <br>
@@ -136,7 +142,7 @@
     </div>
     
     <!-- Image carousel -->
-    <div id="pizza-carousel" class="carousel slide" data-bs-ride="carousel">
+    <div id="pizza-carousel" class="carousel slide d-none" data-bs-ride="carousel">
         <div class="carousel-inner d-flex align-items-center mt-4 mb-5">
             <div class="carousel-item active" data-bs-interval="2000">
                 <img src="images/slideshow-images/img2.jpg" class="carousel-img d-block mx-auto" alt="Pizza på tallrik">
@@ -169,6 +175,11 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
+
+        <!-- Unhides the carousel when JS is enabled -->
+        <script>
+            document.getElementById("pizza-carousel").classList.remove("d-none");
+        </script>
     </div>
 
     <footer class="d-flex flex-column align-items-center py-4 border-top">
