@@ -64,7 +64,7 @@ const updateFilters = async () => {
             if (ingredientsFilters.length === 0) { return true };
 
             // This long statement put simply, checks if pizza's ingredients are allowed
-            return !ingredientsFilters.some((filter) => pizza.ingredients.includes(filter.id));
+            return !ingredientsFilters.some((filter) => pizza.ingredients.map(ingredient => ingredient.id).includes(filter.id));
         });
 
         // Filters out the pizzas that don't match the special options filters
@@ -73,7 +73,7 @@ const updateFilters = async () => {
             if (specialOptionsFilters.length === 0) { return true };
 
             // This long statement put simply, checks if the pizza complies with all the special options
-            return specialOptionsFilters.every((filter) => pizza.specialOptions.includes(filter.id));
+            return specialOptionsFilters.every((filter) => pizza.specialOptions.map(specialOption => specialOption.id).includes(filter.id));
         });
 
         return filteredPizzas;
