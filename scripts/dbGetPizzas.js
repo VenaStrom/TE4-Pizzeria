@@ -7,13 +7,30 @@ const supabase = createClient(dbConnectInfo.url, dbConnectInfo.key, {
 let globalDbPizzas = [];
 let fetchAttempts = 0;
 
+// Run on database error to notify the user
+const fetchingError = (error) => {
+    console.error("Error fetching data:", error);
+
+    const menuDOM = document.getElementById("menu");
+    const quizDOM = document.getElementById("quiz-container");
+
+    menuDOM.classList.add("d-none");
+    quizDOM?.classList.add("d-none"); // Remove "?" when quiz branch is merged
+
+    const noScripts = document.querySelectorAll(".fetching-error-message");
+    noScripts.forEach(noscript => {
+        const replacementDiv = document.createElement("div");
+        replacementDiv.innerHTML = noscript.innerHTML;
+        noscript.replaceWith(replacementDiv);
+    });
+};
+
 // Call this function and wait for the array
 const fetchTableData = async () => {
     // If the fetch has been attempted 3 times, through an error
-
     if (fetchAttempts > 3) {
-        console.error('Error fetching data: Too many attempts');
-        return ;
+        fetchingError("Error fetching data. Too many attempts");
+        return globalDbPizzas;
     };
 
     // If the pizzas have already been fetched, return them
@@ -23,7 +40,7 @@ const fetchTableData = async () => {
 
     // Fetches the data from the tables pizzas, ingredients and special-options
     fetchAttempts++;
-    const { data, error } = await supabase.from('Pizzas').select(`
+    const { data, error } = await supabase.from("Pizzas").select(`
         name, 
         price,
         Ingredients:Ingredients(*),
@@ -31,11 +48,11 @@ const fetchTableData = async () => {
         `);
 
     if (error) {
-        console.error('Error fetching data:', error);
+        fetchingError(error);
         return fetchTableData(); // recall in hopes of getting data
-
+        
     } else if (data.length === 0) {
-        console.warn('No data found in the table.');
+        fetchingError(error);
         return fetchTableData(); // recall in hopes of getting data
     };
 
@@ -53,7 +70,7 @@ const formatPizzaData = (dbPizzas) => {
             name: pizza.name,
             ingredients: pizza.Ingredients.map(ingredient => { return { name: ingredient.name, id: "ingredient" + ingredient.ingredientsID } }), // Get the ingredient object but clean up the names
             price: String(pizza.price + " kr"),
-            id: pizza.name.toLowerCase().replace(/\s/g, '-'),
+            id: pizza.name.toLowerCase().replace(/\s/g, "-"),
             specialOptions: pizza["Special-options"].map(specialOptions => { return { name: specialOptions.name, id: "special-option" + specialOptions.specialID } }), // Get the special options object but clean up the names
         };
     });
