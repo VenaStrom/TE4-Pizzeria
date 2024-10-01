@@ -60,6 +60,10 @@ a {
     min-height: 55rem;
 }
 
+.custom-pizza-name {
+    line-break: anywhere;
+}
+
 /*animations for the filter and menu*/
 .slide-animation-right {
     animation: slide-right 1s ease-in-out forwards;

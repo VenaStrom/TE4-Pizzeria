@@ -41,6 +41,7 @@ const fetchTableData = async () => {
     // Fetches the data from the tables pizzas, ingredients and special-options
     fetchAttempts++;
     const { data, error } = await supabase.from("Pizzas").select(`
+        pizzaID,
         name, 
         price,
         Ingredients:Ingredients(*),
@@ -70,7 +71,7 @@ const formatPizzaData = (dbPizzas) => {
             name: pizza.name,
             ingredients: pizza.Ingredients.map(ingredient => { return { name: ingredient.name, id: "ingredient" + ingredient.ingredientsID } }), // Get the ingredient object but clean up the names
             price: String(pizza.price + " kr"),
-            id: pizza.name.toLowerCase().replace(/\s/g, "-"),
+            id: "pizza" + pizza.pizzaID,
             specialOptions: pizza["Special-options"].map(specialOptions => { return { name: specialOptions.name, id: "special-option" + specialOptions.specialID } }), // Get the special options object but clean up the names
         };
     });
