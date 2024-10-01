@@ -10,7 +10,7 @@ getPizzas().then(pizzas => {
                     <div class="fs-5 fst-italic align-self-center">${pizza.price}</div>
                 </div>
                 <div>
-                    <div class="fs-5 fst-italic" data-ingredients=${pizza.ingredientIDs}>${pizza.ingredients.join(", ")}</div>
+                    <div class="fs-5 fst-italic" data-ingredients=${JSON.stringify(pizza.ingredients)}>${pizza.ingredients.map(ingredient => ingredient.name).join(", ")}</div>
                 </div>
             </div>`;
 

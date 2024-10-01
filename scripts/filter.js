@@ -2,10 +2,13 @@
 // Adjust the threshold to change how strict the search is when it comes to partial matches
 const percentMatchThreshold = 0.3;
 
+
+// This function can be called at any time to update the order of the pizzas in the menu according to the filters
+// At the bottom of the populateFilters.js file, the event listeners are set up to call this function whenever a filter is changed
 const updateFilters = async () => {
     const pizzas = await getPizzas();
 
-    const updateOrder = (filteredPizzas) => {
+    const updateDOM = (filteredPizzas) => {
         // Hide all pizzas
         pizzas.forEach((pizza) => {
             const menuItemDOM = document.querySelector(".pizza#" + pizza.id);
@@ -36,7 +39,8 @@ const updateFilters = async () => {
         }
     };
 
-    const filterCheckboxes = (pizzas) => {
+    // Filters out the pizzas that don't match the checkboxes, i.e. the ingredients and special options
+    const filterByCheckboxes = (pizzas) => {
         const ingredientsCheckboxes = document.querySelectorAll("#filter-container input[type='checkbox'].exclusive-filter");
         const specialOptionsCheckboxes = document.querySelectorAll("#filter-container input[type='checkbox'].inclusive-filter");
 
@@ -60,7 +64,7 @@ const updateFilters = async () => {
             if (ingredientsFilters.length === 0) { return true };
 
             // This long statement put simply, checks if pizza's ingredients are allowed
-            return !ingredientsFilters.some((filter) => pizza.ingredients.includes(filter.id));
+            return !ingredientsFilters.some((filter) => pizza.ingredients.map(ingredient => ingredient.id).includes(filter.id));
         });
 
         // Filters out the pizzas that don't match the special options filters
@@ -69,13 +73,14 @@ const updateFilters = async () => {
             if (specialOptionsFilters.length === 0) { return true };
 
             // This long statement put simply, checks if the pizza complies with all the special options
-            return specialOptionsFilters.every((filter) => pizza.specialOptions.includes(filter.id));
+            return specialOptionsFilters.every((filter) => pizza.specialOptions.map(specialOption => specialOption.id).includes(filter.id));
         });
 
         return filteredPizzas;
     };
 
-    const filterSearch = (pizzas) => {
+    // Filters out the pizzas that don't match the search string
+    const filterBySearch = (pizzas) => {
         const searchBox = document.getElementById("search-box");
         const searchString = searchBox.value.toLowerCase().replace(" ", "");
 
@@ -125,7 +130,8 @@ const updateFilters = async () => {
         return returnList;
     };
 
-    const filterPrice = (pizzas) => {
+    // Uses the price slider to filter out pizzas that are outside the price range
+    const filterByPrice = (pizzas) => {
         const priceSlider = document.getElementById("price-range");
         const priceIntervalText = document.getElementById("price-interval");
         const values = priceSlider.noUiSlider.get();
@@ -139,15 +145,15 @@ const updateFilters = async () => {
             const pizzaPrice = parseFloat(pizza.price);
             return pizzaPrice <= upperValue && pizzaPrice >= lowerValue;
         });
-        
+
         return filteredPizzas;
     };
 
     // Takes the pizzas trough all the filters and updates the order accordingly
     let filteredPizzas = pizzas;
-    filteredPizzas = filterCheckboxes(filteredPizzas);
-    filteredPizzas = filterPrice(filteredPizzas);
-    filteredPizzas = filterSearch(filteredPizzas);
+    filteredPizzas = filterByCheckboxes(filteredPizzas);
+    filteredPizzas = filterByPrice(filteredPizzas);
+    filteredPizzas = filterBySearch(filteredPizzas);
 
-    updateOrder(filteredPizzas);
+    updateDOM(filteredPizzas);
 };

@@ -8,16 +8,18 @@ getPizzas().then(pizzas => {
     // List of all ingredients
     const ingredients = pizzas.map(pizza => (pizza.ingredients)).flat();
     // List of all ingredients without duplicates
-    const uniqueIngredients = [...new Set(ingredients)];
+    const uniqueIngredients = ingredients.filter((ingredient, index) => {
+        return ingredients.findIndex(otherIngredient => otherIngredient.id === ingredient.id) === index;
+    });
 
     // Loops through the unique ingredients and creates a checkbox for each
     uniqueIngredients.forEach(ingredient => {
         const checkboxDOM = `
         <div class="form-check">
         <span class="glyphicon glyphicon-minus"></span>
-        <input class="form-check-input exclusive-filter" type="checkbox" value="" id="${ingredient}" checked>
+        <input class="form-check-input exclusive-filter" type="checkbox" value="" id="${ingredient.id}" checked>
         <label class="form-check-label fst-italic" for="ham">
-        ${ingredient}
+        ${ingredient.name}
         </label>
         </div>`;
 
@@ -34,15 +36,18 @@ getPizzas().then(pizzas => {
     // List of all special options e.g. vegetarian, vegan, gluten free
     const specialOptions = pizzas.map(pizza => (pizza.specialOptions)).flat();
     // List of all special options without duplicates
-    const uniqueSpecialOptions = [...new Set(specialOptions)];
+    const uniqueSpecialOptions = specialOptions.filter((specialOption, index) => {
+        return specialOptions.findIndex(otherSpecialOption => otherSpecialOption.id === specialOption.id) === index;
+    });
+
 
     // Loops through the unique special options and creates a checkbox for each
     uniqueSpecialOptions.forEach(specialOption => {
         const specialOptionDOM = `
             <div class="form-check">
-                <input class="form-check-input custom-form-check-input inclusive-filter" type="checkbox" value="" id="${specialOption}">
+                <input class="form-check-input custom-form-check-input inclusive-filter" type="checkbox" value="" id="${specialOption.id}">
                 <label class="form-check-label fst-italic" for="vegetarian">
-                    ${specialOption}
+                    ${specialOption.name}
                 </label>
             </div>`;
 
@@ -78,14 +83,14 @@ getPizzas().then(pizzas => {
     });
 
     // when the slider is moved, show tooltop
-    priceSlider.noUiSlider.on('start', function() {
+    priceSlider.noUiSlider.on('start', function () {
         document.querySelectorAll('.noUi-tooltip').forEach(tooltip => {
             tooltip.style.display = 'block';
-        }); 
+        });
     });
-    
+
     // when the slider is released, hide tooltip
-    priceSlider.noUiSlider.on('end', function() {
+    priceSlider.noUiSlider.on('end', function () {
         document.querySelectorAll('.noUi-tooltip').forEach(tooltip => {
             tooltip.style.display = 'none';
         });
@@ -100,7 +105,7 @@ getPizzas().then(pizzas => {
     document.querySelector("#filter-container").addEventListener("change", updateFilters);
     document.querySelectorAll("#filter-container input[type='checkbox']").forEach(checkbox => checkbox.addEventListener("change", updateFilters));
     document.getElementById("price-range").noUiSlider.on('slide', updateFilters);
-    
+
     // Run the filter function on page load since browsers can cache input states
     document.addEventListener("DOMContentLoaded", updateFilters);
     updateFilters();

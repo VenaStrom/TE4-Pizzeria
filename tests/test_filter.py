@@ -74,7 +74,7 @@ class TestFilter(TemplateTest):
 
         menu = self.page.locator("#menu-items-container")
 
-        vegetarianCheckbox = self.page.locator("#filter-container #Vegetarisk")
+        vegetarianCheckbox = self.page.locator("#filter-container #special-option1")
         vegetarianCheckbox.click()
         self.assertIn("Margarita", menu.all_inner_texts()[0])
         self.assertNotIn("Hawaii", menu.all_inner_texts()[0])
@@ -83,7 +83,7 @@ class TestFilter(TemplateTest):
         self.assertIn("Margarita", menu.all_inner_texts()[0])
         self.assertIn("Hawaii", menu.all_inner_texts()[0])
 
-        hamCheckbox = self.page.locator("#filter-container #Skinka")
+        hamCheckbox = self.page.locator("#filter-container #ingredient1")
         hamCheckbox.click()
         self.assertNotIn("Hawaii", menu.all_inner_texts()[0])
         self.assertIn("Margarita", menu.all_inner_texts()[0])
@@ -134,10 +134,10 @@ class TestFilter(TemplateTest):
         if not container.is_visible():
             button.click()
             self.page.wait_for_timeout(1100)
-        
+
         menu = self.page.locator("#menu-items-container")
-        veggie = self.page.locator("#filter-container #Vegetarisk")
-        calzone = self.page.locator("#filter-container #Inbakad")
+        veggie = self.page.locator("#filter-container #special-option1")
+        calzone = self.page.locator("#filter-container #special-option2")
 
         # This should not give any results
         veggie.click()
