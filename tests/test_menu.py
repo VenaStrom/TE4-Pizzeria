@@ -1,5 +1,4 @@
 import unittest
-import time
 from utils import *
 
 class TestMenu(TemplateTest):
@@ -23,16 +22,16 @@ class TestMenu(TemplateTest):
 
     def testBasicMenu(self) -> None:
         # Add a delay to ensure the menu is populated
-        time.sleep(2)
+        self.page.wait_for_timeout(500)
         
         try:
             self.assertInAll([
-                "Hawaii",
-                "90 kr",
-                "Vesuvio",
-                "85 kr",
-                "Pompeii",
-                "90 kr"
+                "Margherita",
+                "1 kr",
+                "Ingenting",
+                "0 kr",
+                "Super Mega Ultra Deluxe Extra Large Gigantic Supremely Tasty Pizza with Everything",
+                "32767 kr"
             ], self.page.content())
         except AssertionError as e:
             # Log the contents of menu-items-container
