@@ -3,6 +3,8 @@ let questionIndex = 0;
 
 // Adds a single question in the HTML based off of the provided index
 const renderQuestion = (questionIndex) => {
+    if (questionIndex >= quizData.length) { return; }
+
     const quizContainer = document.getElementById("question-container");
 
     // Clear the container
