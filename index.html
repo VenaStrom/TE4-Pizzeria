@@ -8,17 +8,12 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Il Forno Magico</title>
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-
-    <!-- Custom slider resources -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.0/nouislider.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.0/nouislider.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 
-    <!-- Bootstrap resources -->
+    <!-- Bootstrap requires these -->
     <link rel="stylesheet" href="bootstrap/bootstrap.css">
     <script src="bootstrap/bootstrap.js"></script>
 
@@ -26,7 +21,7 @@
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- To interact with the db, this script is required -->
+    <!-- To interact with the db this script is required -->
     <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <!-- Scripts that don't need to access the menu -->
@@ -74,7 +69,7 @@
                         </button>
                     </div>
 
-                    <div id="menu-items-container" class="overflow-y-scroll p-0 container-fluid position-relative d-grid">
+                    <div id="menu-items-container" class="p-0 container-fluid position-relative d-grid">
                         <!-- This is where all the pizzas are added via js -->
                     </div>
 
@@ -91,7 +86,7 @@
                 </div>
 
                 <!-- Noscript telling people to call instead -->
-                <noscript class="fetching-error-message">
+                <noscript>
                     <div class="container-fluid text-center display-1 fst-italic my-5 fs-3">
                         Tyvärr är vår meny för närvarande inte tillgänglig. <br>
                         Vänligen besök oss på
