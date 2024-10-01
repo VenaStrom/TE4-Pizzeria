@@ -21,6 +21,10 @@
     --bs-box-shadow: 0 0 2rem rgba(0, 0, 0, 1);
 }
 
+/* Remove ugly scrollbar in chrome */
+::-webkit-scrollbar {
+    display: none;
+}
 
 .italianno {
     font-family: 'Italianno';
@@ -52,14 +56,13 @@ a {
     opacity: 0.75;
 }
 
-#menu-items-container::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-  }
+#menu {
+    min-height: 55rem;
+}
 
-  #menu {
-    height: 65rem;
-  }
+.custom-pizza-name {
+    line-break: anywhere;
+}
 
 /*animations for the filter and menu*/
 .slide-animation-right {
@@ -120,14 +123,15 @@ a {
     height: 18px;
     width: 18px;
     top: -5px;
-    right: -9px; /* half the width */
+    right: -9px;
+    /* half the width */
     border-radius: 9px;
 }
 
 .noUi-touch-area {
     padding: 2.5vh;
     position: absolute;
-    top:0.5vh;
+    top: 0.5vh;
     transform: translate(-50%, -50%);
 }
 

@@ -2,11 +2,9 @@ import unittest
 from playwright.sync_api import sync_playwright
 from os import path
 
-
 #
 #  Test class template
 #
-
 class TemplateTest(unittest.TestCase):
     @classmethod
     def setUpClass(self) -> None:

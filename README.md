@@ -34,8 +34,10 @@ To get started with our testing system, follow these instructions:
 6. Restart VS Code.
    * This is done since VS Code can be very flakey when it comes to recognizing the test files.
 
+7. If you run the tests now, most of them will fail. This is because the tests are written to test the `Testing` database. To test with that database, you will need to set up `env.js` (See [How to setup env.js](#how-to-setup-envjs)). After that is set up you need to change the key to the secret key and set the schema to `Testing`.
 
-## Connect to server
+
+## Connect to web server
 Ip address, port and password can be found in this document, [Locked](https://docs.google.com/document/d/1MWLQmjovcKNbXPJKwjeO6dcWuTHolFhyG45ixu8kwDk/edit?usp=sharing).
 * `ssh root@<ip address> -p <port>`
 * `yes` when prompted about connecting
@@ -51,8 +53,6 @@ Connect to the server and run the following command:
 ```
 \<tagVersion> corresponds to the desired [release tag](https://github.com/NTIG-Uppsala/TE4-JITS-Pizzeria/releases) e.g. `v1.0.0`.
 
-
-
 If any problems occur, please check if nginx and git are installed correctly.
 
 ```
@@ -60,6 +60,7 @@ apt install nginx git
 ```
 
 If there is nothing in the folder you will have to clone the repository first.
+
 ```
 git clone https://github.com/NTIG-Uppsala/TE4-JITS-Pizzeria.git /var/www/html
 ```
@@ -85,7 +86,7 @@ When you have those, it's time to copy the `envTemplate.js` file and rename it t
 ## Accessing the schemas and tables
 ### Using the Table Editor
 1. In the dashboard on the left side click `Table Editor`.
-2. In the upper left corner click `schema` and select either `Dev` or `Production`.
+2. In the upper left corner click `schema` and select either `Dev`, `Production` or `Testing`.
 ### Using SQL
 1. In the dashboard on the left side click `SQL Editor`.
 2. To view all the the tables in a specific schema, run the following command but replace`[schema_name]` with the actual name of your schema.
@@ -115,7 +116,9 @@ If you want to create a new schema that should be retrievable from the client si
 
 6. A number of options will show on the right side of the screen. Select the desired policy, e.g select access, and click `save` (Alternatively, you can write your own SQL if your desired policy is not present).
 
-7. If the connection is still denied by the client side, you'll have to run some SQL commands. In the SQL Editor, run the following commands and replace `[schema_name]` with the actual name of your schema:
+7. In the dashboard on the left side click `Project settings` -> `API`, scroll down to `Data API Settings` and add your schema to the exposed schemas.
+
+8. If the connection is still denied by the client side, you'll have to run some SQL commands. In the SQL Editor, run the following commands and replace `[schema_name]` with the actual name of your schema:
     ```sql
     GRANT USAGE ON SCHEMA "[schema_name]" TO anon;
     GRANT SELECT ON ALL TABLES IN SCHEMA "[schema_name]" TO anon;
@@ -141,7 +144,9 @@ If you want to create a new schema that should only be retrievable using the sec
 
 6. A number of options will show on the right side of the screen. Select the desired policy, e.g select access, and click `save` (Alternatively, you can write your own SQL if your desired policy is not present).
 
-7. If the connection is still denied by the client side, you'll have to run some SQL commands. In the SQL Editor, run the following commands and replace `[schema_name]` with the actual name of your schema:
+7. In the dashboard on the left side click `Project settings` -> `API`, scroll down to `Data API Settings` and add your schema to the `exposed schemas`.
+
+8. If the connection is still denied by the client side, you'll have to run some SQL commands. In the SQL Editor, run the following commands and replace `[schema_name]` with the actual name of your schema:
     ```sql
     GRANT USAGE ON SCHEMA "[schema_name]" TO service_role;
     GRANT SELECT ON ALL TABLES IN SCHEMA "[schema_name]" TO service_role;
@@ -150,52 +155,51 @@ If you want to create a new schema that should only be retrievable using the sec
     ```
 
 ## Create tables in schema
-To get an overview of the structure of the database, see this image: [Database Structure](https://github.com/user-attachments/assets/caaa49e9-4b96-4cda-853a-207e645035f4).
+To get an overview of the structure of the database, see this image: [Database Structure](https://github.com/user-attachments/assets/caaa49e9-4b96-4cda-853a-207e645035f4). We have three schemas: Dev, Production and Testing. Each schema shares the same structure but contains different data.
 
-To create all the tables with the correct structures in Supabase, copy and paste the SQL code below into an empty schema in the SQL editor. Remember to replace `[schema_name]` with the actual name of your schema. Note that the tables will be created empty.
+To create all the tables with the correct structures in Supabase, copy and paste the SQL code below into the SQL editor within an empty schema. Replace `[schema_name]` with the actual name of your schema. Note that the tables will be created empty.
 ```sql
-    CREATE TABLE "[schema_name]"."Pizza-special-options" (
-        "pizzaID" SMALLINT NOT NULL,
-        "specialID" SMALLINT NOT NULL,
-        PRIMARY KEY ("pizzaID", "specialID") 
-    );
+CREATE TABLE "[schema_name]"."Pizza-special-options" (
+    "pizzaID" SERIAL NOT NULL, 
+    "specialID" SERIAL NOT NULL,
+    PRIMARY KEY ("pizzaID", "specialID")
+);
 
-    CREATE TABLE "[schema_name]"."Special-options" (
-        "specialID" SMALLINT NOT NULL,
-        "name" TEXT NOT NULL,
-        PRIMARY KEY ("specialID") 
-    );
+CREATE TABLE "[schema_name]"."Special-options" (
+    "specialID" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
+    PRIMARY KEY ("specialID")
+);
 
-    CREATE TABLE "[schema_name]"."Pizzas-ingredients" (
-        "pizzaID" SMALLINT NOT NULL,
-        "ingredientsID" SMALLINT NOT NULL,
-        PRIMARY KEY ("pizzaID", "ingredientsID")
-    );
+CREATE TABLE "[schema_name]"."Pizzas-ingredients" (
+    "pizzaID" SERIAL NOT NULL,
+    "ingredientsID" SERIAL NOT NULL, 
+    PRIMARY KEY ("pizzaID", "ingredientsID")
+);
 
-    CREATE TABLE "[schema_name]"."Pizzas" (
-        "pizzaID" SMALLINT NOT NULL,
-        "name" TEXT NOT NULL,
-        "price" SMALLINT NOT NULL,
-        PRIMARY KEY ("pizzaID")
-    );
+CREATE TABLE "[schema_name]"."Pizzas" (
+    "pizzaID" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
+    "price" SMALLINT NOT NULL,
+    PRIMARY KEY ("pizzaID")
+);
 
-    CREATE TABLE "[schema_name]"."Ingredients" (
-        "ingredientsID" SMALLINT NOT NULL,
-        "name" TEXT NOT NULL,
-        PRIMARY KEY ("ingredientsID")
-    );
+CREATE TABLE "[schema_name]"."Ingredients" (
+    "ingredientsID" SERIAL NOT NULL, 
+    "name" TEXT NOT NULL,
+    PRIMARY KEY ("ingredientsID")
+);
 
-    ALTER TABLE "[schema_name]"."Pizzas-ingredients" 
-        ADD CONSTRAINT "pizzas_ingredients_ingredientsid_foreign" FOREIGN KEY ("ingredientsID") REFERENCES "Ingredients" ("ingredientsID");
+ALTER TABLE "[schema_name]"."Pizzas-ingredients" 
+    ADD CONSTRAINT "pizzas_ingredients_ingredientsid_foreign" FOREIGN KEY ("ingredientsID") REFERENCES "[schema_name]"."Ingredients" ("ingredientsID");
 
-    ALTER TABLE "[schema_name]"."Pizzas-ingredients" 
-        ADD CONSTRAINT "pizzas_ingredients_pizzaid_foreign" FOREIGN KEY ("pizzaID") REFERENCES "Pizzas" ("pizzaID");
+ALTER TABLE "[schema_name]"."Pizzas-ingredients" 
+    ADD CONSTRAINT "pizzas_ingredients_pizzaid_foreign" FOREIGN KEY ("pizzaID") REFERENCES "[schema_name]"."Pizzas" ("pizzaID");
 
-    ALTER TABLE "[schema_name]"."Pizza-special-options" 
-        ADD CONSTRAINT "pizza_special_options_specialid_foreign" FOREIGN KEY ("specialID") REFERENCES "Special-options" ("specialID");
+ALTER TABLE "[schema_name]"."Pizza-special-options" 
+    ADD CONSTRAINT "pizza_special_options_specialid_foreign" FOREIGN KEY ("specialID") REFERENCES "[schema_name]"."Special-options" ("specialID");
 
-    ALTER TABLE "[schema_name]"."Pizza-special-options" 
-        ADD CONSTRAINT "pizza_special_options_pizzaid_foreign" FOREIGN KEY ("pizzaID") REFERENCES "Pizzas" ("pizzaID");
-
+ALTER TABLE "[schema_name]"."Pizza-special-options" 
+    ADD CONSTRAINT "pizza_special_options_pizzaid_foreign" FOREIGN KEY ("pizzaID") REFERENCES "[schema_name]"."Pizzas" ("pizzaID");
 ```
 
