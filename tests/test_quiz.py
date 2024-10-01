@@ -51,11 +51,11 @@ class TestQuiz(TemplateTest):
     def testQuizQuestion(self) -> None:
         radioBox1 = self.page.locator("#radioBox0")
         question = self.page.locator("#question")
-        self.assertIn("Om du fick superkrafter för en dag, vad skulle du göra?", question.inner_text())
+        self.assertIn("Om du fick superkrafter, vad skulle du göra?", question.inner_text())
         for _ in range(3):
             radioBox1.click()
             self.page.wait_for_timeout(1000)
-        self.assertIn("Om du fick vara osynlig i en timme, vad skulle du göra?", question.inner_text())
+        self.assertIn("Om du var osynlig i en timme, vad skulle du göra?", question.inner_text())
         for _ in range(3):
             radioBox1.click()
             self.page.wait_for_timeout(1000)
@@ -65,28 +65,36 @@ class TestQuiz(TemplateTest):
         radioBox1 = self.page.locator("#radioBox0")
         firstAnswer = self.page.locator("#answer0")
         lastAnswer = self.page.locator("#answer3")	
-        self.assertIn("Använda mina krafter för att ta det lugnt och flyga till en plats utan stress", firstAnswer.inner_text())
-        self.assertIn("Göra världen till en roligare plats med massor av tropiska drinkar och sol", lastAnswer.inner_text())
+        self.assertIn("Flyga", firstAnswer.inner_text())
+        self.assertIn("Hjälpa andra", lastAnswer.inner_text())
 
         for _ in range(3):
             radioBox1.click()
             self.page.wait_for_timeout(1000)
-        self.assertIn("Tjuvlyssna på hemliga samtal och sen ta en tupplur", firstAnswer.inner_text())
-        self.assertIn("Göra massor av spratt på folk och sedan springa iväg skrattandes", lastAnswer.inner_text())
+        self.assertIn("Tjuvlyssna på samtal", firstAnswer.inner_text())
+        self.assertIn("Göra spratt på folk", lastAnswer.inner_text())
 
         for _ in range(3):
             radioBox1.click()
             self.page.wait_for_timeout(1000)
-        self.assertIn("Till en lugn plats i historien där jag bara kan njuta av dagen", firstAnswer.inner_text())
-        self.assertIn("Till en tropisk ö för att leva det perfekta semesterlivet", lastAnswer.inner_text())
+        self.assertIn("En lugn plats i historien", firstAnswer.inner_text())
+        self.assertIn("En tid då jag var äldre", lastAnswer.inner_text())
 
 
 
     def testQuizResult(self) -> None:
-        result = self.page.locator("#quizResult")
-        self.assertTrue(result.is_visible())
-        self.assertIn("Enligt dina svar är du en", result.inner_text())
-        self.assertNotIn("undefined", result.inner_text())
+        quizContainer =  self.page.locator("#quiz-container",)
+        radioBox1 = self.page.locator("#radioBox0")
+
+        # Jump to last question and answer it
+        self.page.evaluate("questionIndex = 6")
+        radioBox1.click()
+        
+        self.page.wait_for_timeout(1000)
+
+        self.assertIn("Din pizza är...", quizContainer.inner_text())
+        self.assertNotIn("undefined", quizContainer.inner_text())
+        self.assertNotIn("[object Object]", quizContainer.inner_text())
 
 
 
