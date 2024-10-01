@@ -1,7 +1,7 @@
 const populateQuiz = () => {
     let currentQuestionIndex = 0;
 
-    const quizContainer = document.getElementById('quiz-container');
+    const quizContainer = document.getElementById('question-container');
     
 
     function displayQuestion() {
@@ -9,15 +9,15 @@ const populateQuiz = () => {
 
         const quizItem = quizData[currentQuestionIndex];
         const questionDiv = document.createElement('div');
-        questionDiv.classList.add('mt-3', 'Montserrat',);
+        questionDiv.classList.add('mt-3','row', 'justify-content-center');
         questionDiv.innerHTML = `
-            <div class="">
-                <h5 class="pb-2 text-center" id="question">${quizItem.question}</h5>
+            <div class="col-10 col-sm-4">
+                <h5 class="Montserrat" id="question">${quizItem.question}</h5>
                 <form class="quiz-form Montserrat">
                     ${quizItem.answers.map((answer, index) => `
-                        <div class="form-check fst-italic d-flex justify-content-center">
+                        <div class="form-check">
                             <input class="form-check-input" type="radio" name="answer" id="radioBox${index}" value="${answer}">
-                            <label class="form-check-label ms-3" id="answer${index}" for="radioBox${index}">
+                            <label class="form-check-label fst-italic ms-1 Montserrat" id="answer${index}" for="radioBox${index}">
                                 ${answer}
                             </label>
                         </div>
