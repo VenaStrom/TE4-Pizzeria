@@ -1,7 +1,5 @@
 ## About
-A website for a pizza restaurant named [*Il Forno Magico*](https://ilfornomagico.ntig.dev/).
-
-Link to [nightly build](https://ntig-uppsala.github.io/TE4-JITS-Pizzeria/).
+A website for a pizza restaurant named [*Il Forno Magico*](https://ntig-uppsala.github.io/TE4-JITS-Pizzeria/).
 
 ## Development environment
 * **OS:** Windows 11

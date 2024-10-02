@@ -26,8 +26,6 @@
 
     <!-- Scripts that don't need to access the menu -->
     <script defer src="scripts/openFilters.js"></script>
-    <script defer src="scripts/quizList.js"></script>
-    <script defer src="scripts/populateQuiz.js"></script>
 
     <!-- db connection credentials. dbConnectionInfo is public but the env.js is created by you if you need to connect differently -->
     <script defer src="dbConnectionInfo.js"></script>
@@ -131,20 +129,7 @@
             </div>
         </div>
     </div>
-
-    <!-- Quiz -->
-    <div id="quiz-container" class="row container-fluid d-flex justify-content-center align-items-center flex-column d-none">
-        <div class="display-1 italianno mx-auto text-center mt-5">Pizza kompass</div>
-        <div id="question-container" class="container-fluid col-sm-6 fw-normal p-0">
-            <!-- This is where all the quiz questions are added via js -->
-        </div>
-
-        <!-- Unhides the quiz when JS is enabled -->
-        <script>
-            document.getElementById("quiz-container").classList.remove("d-none");
-        </script>
-    </div>
-
+    
     <!-- Image carousel -->
     <div id="pizza-carousel" class="carousel slide d-none mt-5 mb-5" data-bs-ride="carousel">
         <div class="carousel-inner d-flex align-items-center mt-4 mb-5">
