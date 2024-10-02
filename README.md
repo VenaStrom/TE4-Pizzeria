@@ -20,49 +20,6 @@ A website for a pizza restaurant named [*Il Forno Magico*](https://ntig-uppsala.
     * playwright 1.46.0
 * Bootstrap v5.3.3
 
-
-## Configure tests
-To get started with our testing system, follow these instructions:
-
-1. In the VS Code menu bar, navigate to **View -> Testing**.
-2. Click on `Configure Python Tests`.
-3. Click on `unittest`.
-4. Click on `tests`.
-5. Click on `test_*.py`.
-6. Restart VS Code.
-   * This is done since VS Code can be very flakey when it comes to recognizing the test files.
-
-7. If you run the tests now, most of them will fail. This is because the tests are written to test the `Testing` database. To test with that database, you will need to set up `env.js` (See [How to setup env.js](#how-to-setup-envjs)). After that is set up you need to change the key to the secret key and set the schema to `Testing`.
-
-
-## Connect to web server
-Ip address, port and password can be found in this document, [Locked](https://docs.google.com/document/d/1MWLQmjovcKNbXPJKwjeO6dcWuTHolFhyG45ixu8kwDk/edit?usp=sharing).
-* `ssh root@<ip address> -p <port>`
-* `yes` when prompted about connecting
-* `<root password>`
-* `cd /var/www/html`
-
-
-## Deploy to production
-
-Connect to the server and run the following command:
-```
-/usr/local/bin/deploy.sh <tagVersion>
-```
-\<tagVersion> corresponds to the desired [release tag](https://github.com/NTIG-Uppsala/TE4-JITS-Pizzeria/releases) e.g. `v1.0.0`.
-
-If any problems occur, please check if nginx and git are installed correctly.
-
-```
-apt install nginx git
-```
-
-If there is nothing in the folder you will have to clone the repository first.
-
-```
-git clone https://github.com/NTIG-Uppsala/TE4-JITS-Pizzeria.git /var/www/html
-```
-
 ## Accessing the database 
 We use [SupaBase](https://supabase.com/) as our database. To access the database, follow these steps:
 1. Go to [SupaBase](https://supabase.com/).
