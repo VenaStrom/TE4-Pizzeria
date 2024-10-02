@@ -184,7 +184,7 @@ a {
 .custom-right-border::before {
     content: '';
     position: absolute;
-    top: 15vh;
+    top: 7rem;
     bottom: 5vh;
     width: 1px;
     background-color: rgb(255, 255, 255);
