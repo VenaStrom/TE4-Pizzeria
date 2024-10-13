@@ -158,3 +158,8 @@ ALTER TABLE "[schema_name]"."Pizza-special-options"
     ADD CONSTRAINT "pizza_special_options_pizzaid_foreign" FOREIGN KEY ("pizzaID") REFERENCES "[schema_name]"."Pizzas" ("pizzaID");
 ```
 
+## Technologies
+- HTML
+- Bootstrap
+- JavaScript
+- SQL (postgresql)
