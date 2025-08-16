@@ -1,5 +1,5 @@
 ## About
-A website for a pizza restaurant named [*Il Forno Magico*](https://viggostrom.github.io/TE4-Pizzeria/).
+A website for a pizza restaurant named [*Il Forno Magico*](https://VenaStrom.github.io/TE4-Pizzeria/).
 
 ## Development environment
 * **OS:** Windows 11
